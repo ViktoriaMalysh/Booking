@@ -24,8 +24,11 @@
 .form121{
   background-color: rgba(235, 183, 106, 0.877);
   padding: 15em;
-  margin: 3em;
+  margin: 8em;
+  margin-left: 20em;
+  margin-right: 20em;
   text-align: center;
+  font-family: Georgia;
 }
 
 .form111{

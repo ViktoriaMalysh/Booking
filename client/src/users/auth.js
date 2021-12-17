@@ -59,10 +59,13 @@ function Auth() {
       {store.users.text && <Alert text={store.users.text} />}
       <div className="form11">
         <Form onSubmit={handleSubmit}>
-          <Row className="mb-3" style={{
-          marginLeft: "3em",
-          marginRight: "auto",
-        }}>
+          <Row 
+            className="mb-3" 
+            style={{
+              marginLeft: "3em",
+              marginRight: "auto",
+            }}
+          >
           <Col xs="10">
             <Form.Group
               className="mb-3"

@@ -32,7 +32,7 @@ services:
   db:
     image: postgres
     restart: always
-    container_name: db_project2
+    container_name: treker_db
     working_dir: /app
     environment:
       - POSTGRES_PASSWORD=123
