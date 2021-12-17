@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  client:
+    image: node:16-alpine3.11
+    build: ./client
+    working_dir: /app
+    restart: always
+    ports:
+      - 3000:3000
+    stdin_open: true
+    container_name: client_project2
+    volumes:
+      - ./client:/app
+    command: npm start
+    depends_on:
+      - server
+  server:
+    image: node:16-alpine3.11
+    build: ./server
+    restart: always
+    container_name: server_project2
+    command: npm run server
+    working_dir: /app
+    ports:
+      - 8080:8080
+    volumes:
+      - ./server:/app
+    environment:
+      POSTGRES_HOST: db
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: always
+    container_name: db_project2
+    working_dir: /app
+    environment:
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_USER=vika123
+      - POSTGRES_DB=db_2
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  db:
+  server:
+   
