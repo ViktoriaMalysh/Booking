@@ -60,11 +60,12 @@ function ShowProjects() {
 
   return (
     <div className="form111">
+      <div className="form7">
       <Form onSubmit={handleSubmit}>
         <Row className="mb-3">
           <Form.Label>
             <h4>
-              <i>Enter the name of project:</i>
+              Enter the name of project:
             </h4>
           </Form.Label>
 
@@ -74,14 +75,14 @@ function ShowProjects() {
             controlId="formGridAddress1"
             onChange={(e) => setSearchProject(e.target.value)}
           >
-            <Form.Control placeholder="Enter project name" />
+            <Form.Control placeholder="Enter project name"  style={{ fontStyle: 'italic' }}/>
           </Form.Group>
         </Row>
         <Button variant="danger" type="submit">
           Find
         </Button>{" "}
         <br></br> <br></br>
-        <Table striped bordered hover>
+        <Table striped bordered hover style={{ fontStyle: 'italic' }}>
           <thead>
             <tr>
               <th>ID</th>
@@ -111,6 +112,7 @@ function ShowProjects() {
           </tbody>
         </Table>
       </Form>
+      </div>
     </div>
   );
 }

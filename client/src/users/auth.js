@@ -119,7 +119,7 @@ function Auth() {
                  Password
                 </h4>
               </Form.Label>
-              <Form.Control type="password" placeholder="Password" required  style={{ fontStyle: 'italic' }}/>
+              <Form.Control type="password" placeholder="Enter password" required  style={{ fontStyle: 'italic' }}/>
             </Form.Group>
             </Col>
           </Row>
@@ -130,7 +130,7 @@ function Auth() {
         }}>
             <Form.Check
               required
-              label="I have read and I accept the Teamgeist"
+              label="I have read and agree with the rules of the Teamgeist"
               feedback="You must accept the Teamgeist"
             />
           </Form.Group>

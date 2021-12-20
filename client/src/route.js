@@ -33,7 +33,12 @@ export default function App() {
         <GuardedRoute path="/projects/newProject" component={NewProject} auth={store.users.isAuth}/>
         <GuardedRoute path="/projects/showProjects" component={ShowProjects} auth={store.users.isAuth}/>
         <Route path="/projects/teamgeist" component={Teamgeist} />
+
+        <Route path="/users/myAccounts" component={MyAccounts} />
+
         <Route path="/" component={Home} />
+
+     
 
         //----------------------------------------profile---------------------------------------------
 
