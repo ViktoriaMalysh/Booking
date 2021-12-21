@@ -1,12 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
 
 export default function BtnComponent(props) {
-  let history = useHistory();
-  const dispatch = useDispatch();
-  const store = useSelector((state) => state);
 
   return (
     <div>

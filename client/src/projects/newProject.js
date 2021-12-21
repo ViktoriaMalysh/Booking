@@ -16,10 +16,6 @@ function NewProject() {
   const store = useSelector((state) => state);
   const [newProject, setNewProject] = useState("");
 
-  // useEffect(() => {
-  //   dispatch({ type: NAME_PROJECT, payload: "" });
-  // }, [])
-
   useEffect(() => {
     if (store.projects.success) {
       setTimeout(() => {
@@ -38,7 +34,7 @@ function NewProject() {
   }, [store.projects.flagSuccess]);
 
   useEffect(() => {
-    if (store.projects.nameProject != "") {
+    if (store.projects.nameProject !== "") {
       const project = {
         projectName: store.projects.nameProject,
         id: store.users.userId,
@@ -57,11 +53,13 @@ function NewProject() {
       {store.projects.text && <Alert text={store.projects.text} />}
       <div className="form11">
         <Form onSubmit={handleSubmit}>
-          <Row className="mb-3"
-                      style={{
-                        marginLeft: "5em",
-                        marginRight: "auto",
-                      }}>
+          <Row
+            className="mb-3"
+            style={{
+              marginLeft: "5em",
+              marginRight: "auto",
+            }}
+          >
             <Col xs="10">
               <Form.Group
                 className="mb-3"
@@ -71,14 +69,22 @@ function NewProject() {
                 <Form.Label>
                   <h4>Project name</h4>
                 </Form.Label>
-                <Form.Control placeholder="Enter project name" style={{ fontStyle: 'italic' }} required />
+                <Form.Control
+                  placeholder="Enter project name"
+                  style={{ fontStyle: "italic" }}
+                  required
+                />
               </Form.Group>
             </Col>
           </Row>
-          <Button variant="warning" type="submit"   style={{
-                        marginLeft: "5.8em",
-                        marginRight: "auto",
-                      }}>
+          <Button
+            variant="warning"
+            type="submit"
+            style={{
+              marginLeft: "5.8em",
+              marginRight: "auto",
+            }}
+          >
             Create project
           </Button>{" "}
         </Form>

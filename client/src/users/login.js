@@ -26,7 +26,7 @@ function Login() {
   }
 
   useEffect(() => {
-    if (store.users.userPassword != "") {
+    if (store.users.userPassword !== "") {
       const user = {
         email: store.users.userEmail,
         password: store.users.userPassword,
@@ -41,18 +41,15 @@ function Login() {
     dispatch({ type: USER_PASSWORD, payload: password });
   };
 
-
   const handlePush = () => {
-  history.push("/users/auth")
+    history.push("/users/auth");
   };
-
- 
 
   return (
     <div className="firstform">
       {store.users.text && <Alert text={store.users.text} />}
       <div className="form11">
-        <Form >
+        <Form>
           <Row
             className="mb-3"
             style={{
@@ -97,42 +94,36 @@ function Login() {
               </Form.Group>
             </Col>
           </Row>
-
-
-          
         </Form>
-        
-  
-      <div className="ppp">
 
-      <Button
-            variant="warning"
-            type="submit"
-            style={{
-              // marginLeft: "7em",
-              // marginRight: "auto",
-              marginTop: "2em"
-            }}
-            onClick={handleSubmit}
-          >
-            Login
-          </Button>
-      <p style={{ marginTop: "1em" }}>Doesn`t login? Click here</p>
+        <div className="ppp">
           <Button
             variant="warning"
             type="submit"
             style={{
               // marginLeft: "7em",
               // marginRight: "auto",
-              marginTop: "3em"
+              marginTop: "1em",
             }}
-
+            onClick={handleSubmit}
+          >
+            Login
+          </Button>
+          <p style={{ marginTop: "4em" }}>Don`t have an account?</p>
+          <Button
+            variant="warning"
+            type="submit"
+            style={{
+              // marginLeft: "7em",
+              // marginRight: "auto",
+              marginTop: "0.5em",
+            }}
             onClick={handlePush}
           >
             Authorization
           </Button>
+        </div>
       </div>
-          </div>
     </div>
   );
 }

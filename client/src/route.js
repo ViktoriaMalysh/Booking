@@ -36,6 +36,8 @@ export default function App() {
 
         <Route path="/users/myAccounts" component={MyAccounts} />
 
+        <Route path="/users/myProfile" component={MyProfile} />
+
         <Route path="/" component={Home} />
 
      

@@ -31,118 +31,58 @@ function ContainedButtons() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavDropdown
-                id="responsive-navbar-nav"
-                title="USERS"
-                menuVariant="dark"
-              >
-                <NavDropdown.Item disabled={store.users.isAuth}>
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={"/users/auth"}
-                  >
-                    Auth
-                  </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={"/users/login"}
-                  >
-                    Login
-                  </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={"/users/logout"}
-                  >
-                    Logout
-                  </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={"/users/deleteAccount"}
-                  >
-                    Delete Account
-                  </Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-
-              <NavDropdown
-                id="nav-dropdown-dark-example"
-                title="PROJECTS"
-                menuVariant="dark"
-                disabled={!store.users.isAuth}
-              >
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to={"/projects/newProject"}
-                  >
-                    New project
-                  </Link>
-                </NavDropdown.Item>
-              </NavDropdown>
+              <NavDropdown.Item>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={"/projects/newProject"}
+                >
+                  New project
+                </Link>
+              </NavDropdown.Item>
             </Nav>
             <Nav>
               {!store.users.isAuth ? (
-                // <NavDropdown.Item>
-                //   <Link
-                //     style={{ textDecoration: "none", color: "white" }}
-                //     to={"/users/auth"}
-                //   >
-                //     Auth
-                //   </Link>
-                // </NavDropdown.Item>
-
                 <NavDropdown.Item>
                   <Link
                     style={{ textDecoration: "none", color: "white" }}
                     to={"/users/login"}
                   >
-                    Login
+                    Sign in
                   </Link>
                 </NavDropdown.Item>
-
-
               ) : (
-   
-            
-              <NavDropdown
-                title={store.users.userName}
-                id="collasible-nav-dropdown"
-              >
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to={"/users/myAccounts"}
-                  >
-                    My Profile
-                  </Link>
-                </NavDropdown.Item>
+                <NavDropdown
+                  title={store.users.userName}
+                  id="collasible-nav-dropdown"
+                >
+                  <NavDropdown.Item>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={"/users/myProfile"}
+                    >
+                      My Profile
+                    </Link>
+                  </NavDropdown.Item>
 
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to={"/projects/showProjects"}
-                  >
-                    My Projects
-                  </Link>
-                </NavDropdown.Item>
-
-                <NavDropdown.Item>
-                  <Link
-                    style={{ textDecoration: "none", color: "black" }}
-                    to={"/users/logout"}
-                  >
-                    LOG OUT
-                  </Link>
-                </NavDropdown.Item>
-              </NavDropdown> 
-               )}
+                  <NavDropdown.Item>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={"/projects/showProjects"}
+                    >
+                      My Projects
+                    </Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item>
+                    <Link
+                      style={{ textDecoration: "none", color: "black" }}
+                      to={"/users/logout"}
+                    >
+                      LOG OUT
+                    </Link>
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -58,6 +58,7 @@ module.exports.show = async function(req,res,next){
     await Project.sequelize.sync({ alter: true}); 
     const id = req.body.id
     await Project.findAll({where: {id_user: id}, raw: true}).then(result=>{
+      // console.log(result)
       res.send(result);    
     }).catch(err=>console.log(err));
   }catch(err){

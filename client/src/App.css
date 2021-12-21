@@ -21,6 +21,26 @@
   font-family: Georgia;
 }
 
+.firstform7{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-areas: "button7 . . . ."
+  ". form form form .";
+}
+
+.form117{
+  background-color: rgba(235, 183, 106, 0.877);
+  padding: 8em;
+  margin: 3em;
+  /* text-align: center; */
+  grid-area: form;
+  font-family: Georgia;
+}
+.button1{
+  grid-area: button7;
+  /* margin-right: 10em; */
+}
+
 .ppp{
   /* grid-area: form1; */
   text-align: center;
@@ -44,8 +64,12 @@
   margin-right: 10em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
-  grid-template-areas: ". form77 form77 form77 .";
+  grid-template-areas: "button8 form77 form77 form77 .";
 
+}
+.button8{
+  grid-area: button8;
+  
 }
 
 .form7{

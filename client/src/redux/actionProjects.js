@@ -39,7 +39,7 @@ export const fetchTime = (project) => {
         id: project.id,
         time: time,
       })
-      .then((res) => res.json())
+      // .then((res) => res.json())
       .then(dispatch(requestSuccessProject()), (err) => dispatch(requestErrorProject(err)));
   };
 };
@@ -68,8 +68,10 @@ export const fetchShowProject = (id) => {
         id: id,
       })
       .then((res) => dispatch({ type: SHOW_PROJECT, payload: res.data }))
+      .then((res) => console.log("res", res.data))
       .then(
         (data) => dispatch(requestSuccessProject(data)),
+        // (data) => console.log("data", data),
         dispatch({ type: SHOW_LOADER }),
         setTimeout(() => {
           dispatch({ type: HIDE_LOADER });

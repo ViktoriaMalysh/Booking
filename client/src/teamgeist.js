@@ -75,7 +75,7 @@ function App() {
     setTimeout(() => {
       history.push("/projects/showProjects");
       dispatch({ type: NAME_PROJECT, payload: "" });
-    }, 1000)
+    }, 600)
   };
 
   const resume = () => start();
