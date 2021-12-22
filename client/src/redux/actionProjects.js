@@ -32,6 +32,7 @@ export const alert = (message) => {
 export const fetchTime = (project) => {
   return (dispatch) => {
     const time = project.end - project.start;
+    console.log("time", time)
     dispatch(requestProject());
     axios
       .post(`http://localhost:8080/project/addTime`, {

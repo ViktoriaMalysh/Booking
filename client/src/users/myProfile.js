@@ -19,7 +19,6 @@ function MyProfile() {
     }
   }, []);
 
-
   if (loading) {
     return (
       <div className="form1111">
@@ -33,23 +32,69 @@ function MyProfile() {
   };
 
   return (
-    <div className="firstform">
-      <div className="form11">
-        <p>Name: {store.users.userName}</p>
+    <div className="firstform9">
+      <div className="form119">
+        <div className="image9">
+          <img
+            alt="Avatar"
+            class="avatar"
+            src="https://okeygeek.ru/wp-content/uploads/2020/03/no_avatar.png"
+          />
+        </div>
+        <div className="nameAndSurname">
+          <p className="name">
+            {store.users.userName}
+            {"  "}
+            {store.users.userSurname}
+          </p>
+          <p className="country">country</p>
 
-        <p>Surname: {store.users.userSurname}</p>
+          <p className="projects">0 created projects</p>
 
-        <p>Email: {store.users.userEmail}</p>
+          <Button
+            variant="warning"
+            onClick={() => history.push("/users/checkPass")}
+          >
+            Profile Settings
+          </Button>
+        </div>
+        <div className="myself">
+          <p>
+            Sex:{" "}
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+          </p>
 
-        <p>Role: {role}</p>
+          <p>
+            Age:{" "}
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+          </p>
 
-        <Button
-          variant="danger"
-          onClick={() => changeProfile(store.users.userId)}
-        >
-          Change your profile
-        </Button>
-    </div>
+          <p>
+            Email:{" "}
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+          </p>
+
+          <p>
+            Phone:{" "}
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+          </p>
+          
+          <Button
+            variant="warning"
+            onClick={() => history.push("/users/logout")}
+          >
+            Logout
+          </Button>
+<br/>
+          <Button
+            variant="warning"
+            onClick={() => history.push("/users/deleteAccount")}
+          >
+            Delete Account
+          </Button>
+
+        </div>
+      </div>
     </div>
   );
 }

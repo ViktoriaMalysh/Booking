@@ -75,7 +75,15 @@ function ShowProjects() {
   }
 
   const handleBack = () => {
-    history.push("/projects/showProjects");
+    // history.push("/projects/showProjects");
+    setBack(false)
+    dispatch({ type: SHOW_PROJECT, payload: [{}] });
+    dispatch(fetchShowProject(store.users.userId));
+    setTimeout(() => {
+      console.log("setTimeout");
+      
+      dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_PROJECT });
+    }, 1000);
   };
 
   return (

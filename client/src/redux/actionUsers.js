@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_USER, IS_AUTH, REQUESTED_FAILED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_USER, SHOW_ALERT, USER_EMAIL, USER_ID, USER_NAME, USER_ROLE, USER_SURNAME } from "./types";
+import { CLEAR_USER, ERROR, FLAG, IS_AUTH, REQUESTED_FAILED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_USER, SHOW_ALERT, USER_EMAIL, USER_ID, USER_NAME, USER_ROLE, USER_SURNAME } from "./types";
 
 const requestUser = () => {
   return { type: REQUESTED_USER };
@@ -110,26 +110,26 @@ export const fetchDelete = (token) => {
   };
 };
 
-// export const fetchChangePass = (id, password) => {
-//   return (dispatch) => {
-//     dispatch(requestUser());
-//     axios
-//       .post(`http://localhost:8080/users/pass`, {
-//         id: id,
-//         password: password,
-//       })
-//       .then((res) => {
-//         if (res.data.error) dispatch({ type: ERROR, payload: res.data.error });
-//         else dispatch({ type: FLAG, payload: true });
+export const fetchChangePass = (id, password) => {
+  return (dispatch) => {
+    dispatch(requestUser());
+    axios
+      .post(`http://localhost:8080/users/pass`, {
+        id: id,
+        password: password,
+      })
+      .then((res) => {
+        if (res.data.error) dispatch({ type: ERROR, payload: res.data.error });
+        else dispatch({ type: FLAG, payload: true });
 
-//         dispatch(alert("Success!"));
-//       })
-//       .then(
-//         (data) => dispatch(requestSuccessUser(data)),
-//         (err) => dispatch(requestErrorUser(err, "User not found"))
-//       );
-//   };
-// };
+        dispatch(alert("Success!"));
+      })
+      .then(
+        (data) => dispatch(requestSuccessUser(data)),
+        (err) => dispatch(requestErrorUser(err, "User not found"))
+      );
+  };
+};
 
 
 // export const fetchChange = (id, name, surname, email, password) => {

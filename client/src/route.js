@@ -38,6 +38,8 @@ export default function App() {
 
         <Route path="/users/myProfile" component={MyProfile} />
 
+        <Route path="/users/checkPass" component={CheckPassword} />
+
         <Route path="/" component={Home} />
 
      

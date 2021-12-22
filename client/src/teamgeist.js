@@ -52,6 +52,7 @@ function App() {
     clearInterval(interv);
     setStatus(2);
     let end = new Date();
+    console.log("end", end)
     const project = {
       projectName: store.projects.nameProject,
       id: store.users.userId,

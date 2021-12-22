@@ -63,7 +63,7 @@ function Auth() {
   const handlePush = () => {
     history.push("/users/login");
   };
-
+ 
   return (
     <div className="firstform7">
       {store.users.text && <Alert text={store.users.text} />}
