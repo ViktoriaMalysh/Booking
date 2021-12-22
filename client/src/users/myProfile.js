@@ -73,7 +73,7 @@ function MyProfile() {
             Email:{" "}
             <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
           </p>
-
+<p>hello</p>
           <p>
             Phone:{" "}
             <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
