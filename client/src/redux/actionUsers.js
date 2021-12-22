@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_USER, ERROR, FLAG, IS_AUTH, REQUESTED_FAILED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_USER, SHOW_ALERT, USER_EMAIL, USER_ID, USER_NAME, USER_ROLE, USER_SURNAME } from "./types";
+import { CHANGE, CLEAR_USER, ERROR, FLAG, IS_AUTH, REQUESTED_FAILED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_USER, SHOW_ALERT, USER_AGE, USER_COUNTRY, USER_EMAIL, USER_ID, USER_NAME, USER_PHONE, USER_ROLE, USER_SEX, USER_SURNAME } from "./types";
 
 const requestUser = () => {
   return { type: REQUESTED_USER };
@@ -40,6 +40,11 @@ export const fetchVerifyToken = (token) => {
         dispatch({type: USER_SURNAME, payload: res.data.surname})
         dispatch({type: USER_EMAIL, payload: res.data.email})
         dispatch({type: USER_ROLE, payload: res.data.role})
+
+        dispatch({type: USER_SEX, payload: res.data.sex})
+        dispatch({type: USER_AGE, payload: res.data.age})
+        dispatch({type: USER_COUNTRY, payload: res.data.country})
+        dispatch({type: USER_PHONE, payload: res.data.phone})
       })
       .then(
         (data) => dispatch(requestSuccessUser(data)),
@@ -63,6 +68,9 @@ export const fetchAuth = (user) => {
         dispatch({type: IS_AUTH, payload: true})
         dispatch({type: USER_ID, payload: res.data.id})
         dispatch(alert('Authorization was successful!'))
+        dispatch({type: USER_NAME, payload: res.data.name})
+        dispatch({type: USER_SURNAME, payload: res.data.surname})
+        dispatch({type: USER_EMAIL, payload: res.data.email})
       })
       .then(
         (data) => dispatch(requestSuccessUser(data)),  
@@ -83,6 +91,10 @@ export const fetchLogin = (user) => {
         localStorage.setItem('token', res.data.token)
         dispatch({type: IS_AUTH, payload: true})
         dispatch({type: USER_ID, payload: res.data.id})
+        dispatch({type: USER_SEX, payload: res.data.sex})
+        dispatch({type: USER_AGE, payload: res.data.age})
+        dispatch({type: USER_COUNTRY, payload: res.data.country})
+        dispatch({type: USER_PHONE, payload: res.data.phone})
         dispatch(alert('Success!'))
       })
       .then(
@@ -114,7 +126,7 @@ export const fetchChangePass = (id, password) => {
   return (dispatch) => {
     dispatch(requestUser());
     axios
-      .post(`http://localhost:8080/users/pass`, {
+      .post(`http://localhost:8080/auth/pass`, {
         id: id,
         password: password,
       })
@@ -132,29 +144,33 @@ export const fetchChangePass = (id, password) => {
 };
 
 
-// export const fetchChange = (id, name, surname, email, password) => {
-//   return (dispatch) => {
-//     dispatch(requestUser());
-//     axios
-//       .post(`http://localhost:8080/users/changeProfile`, {
-//         id: id,
-//         name: name,
-//         surname: surname,
-//         email: email,
-//         password: password,
-//       })
-//       .then((res) => {
-//         if (res.data.error) dispatch({ type: ERROR, payload: res.data.error });
-//         else dispatch({ type: CHANGE, payload: true });
+export const fetchChange = (id, name, surname, sex, age, country, phone, email, password) => {
+  return (dispatch) => {
+    dispatch(requestUser());
+    axios
+      .post(`http://localhost:8080/auth/changeProfile`, {
+        id: id,
+        name: name,
+        surname: surname,
+        sex: sex,
+        age: age,
+        country: country,
+        phone: phone,
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        if (res.data.error) dispatch({ type: ERROR, payload: res.data.error });
+        else dispatch({ type: CHANGE, payload: true });
 
-//         dispatch(alert("Success!"));
-//       })
-//       .then(
-//         (data) => dispatch(requestSuccessUser(data)),
-//         (err) => dispatch(requestErrorUser(err, "User not found"))
-//       );
-//   };
-// };
+        dispatch(alert("Success!"));
+      })
+      .then(
+        (data) => dispatch(requestSuccessUser(data)),
+        (err) => dispatch(requestErrorUser(err, "User not found"))
+      );
+  };
+};
 
 
 

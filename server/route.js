@@ -20,4 +20,10 @@ router.post('/logout', controller.logout)
 //localhost:8080/auth/setId
 router.post('/setId', controller.setId)
 
+//localhost:8080/auth/pass
+router.post('/pass', controller.validatePassword)
+
+//localhost:8080/auth/changeProfile
+router.post('/changeProfile', controller.changeProfile)
+
 module.exports = router 

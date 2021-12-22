@@ -36,8 +36,8 @@ services:
     working_dir: /app
     environment:
       - POSTGRES_PASSWORD=123
-      - POSTGRES_USER=vika123
-      - POSTGRES_DB=db_2
+      - POSTGRES_USER=vika
+      - POSTGRES_DB=postgres
     volumes:
       - ./db:/var/lib/postgresql/data
     ports:

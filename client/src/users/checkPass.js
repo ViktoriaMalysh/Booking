@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Form, Col } from "react-bootstrap";
 import { useSelector, useDispatch, connect } from "react-redux";
@@ -13,16 +13,20 @@ function ChangePassword() {
   const store = useSelector((state) => state);
   const [password, setPassword] = useState("");
 
+useEffect(() => {
+  if (store.users.flag) {
+    history.push("/users/changeProfile");
+    // history.push("/home");
+    
+    setTimeout(() => {
+      dispatch({ type: FLAG, payload: false });
+    }, 1200)
+  }
+}, [store.users.flag])
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
     dispatch(fetchChangePass(store.users.userId, password));
-
-    if (store.users.flag) {
-      history.push("/users/changeProfile");
-      dispatch({ type: FLAG, payload: false });
-    }
-
     setTimeout(() => {
       dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_USER });
     }, 1000);
@@ -32,7 +36,7 @@ function ChangePassword() {
     <div className="firstform7">
       {/* {store.users.text && <Alert text={store.users.text} />} */}
       <div className="form117">
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Form.Group
             className="mb-3"
             controlId="formGridPassword"
@@ -48,7 +52,7 @@ function ChangePassword() {
             <Form.Control type="password" style={{ fontStyle: "italic" }} placeholder="Password" required />
           </Form.Group>
 
-          <Button variant="warning" type="submit">
+          <Button variant="warning" type="submit" onClick={handleSubmit}>
             Check password
           </Button>
         </Form>

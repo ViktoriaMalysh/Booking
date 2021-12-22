@@ -45,7 +45,7 @@ module.exports.authentication = async function (req, ress) {
         keys.jwt,
         { expiresIn: 300 }
       );
-      ress.status(200).json({ token: token, id: id });
+      ress.status(200).json({ token: token, id: id, name: candidat.name, surname: candidat.surname, email: candidat.email });
     } else ress.status(404).json({ flag: false });
   } catch (err) {
     console.log("Error: " + err);
@@ -69,7 +69,17 @@ module.exports.authorization = async function (req, ress) {
           keys.jwt,
           { expiresIn: 300 }
         );
-        ress.status(200).json({ token: token, id: id });
+        ress.status(200).json({ 
+          token: token, 
+          id: id, 
+          name: check_email_login.name,
+          surname: check_email_login.surname,
+          sex: check_email_login.sex,
+          age: check_email_login.age,
+          country: check_email_login.country,
+          phone: check_email_login.phone,
+          email: check_email_login.email,
+          role: check_email_login.role, });
       } else ress.status(404).json({ flag: false });
     } else ress.status(404).json({ flag: false });
   } catch (err) {
@@ -135,6 +145,10 @@ console.log(user.email)
           id: user.id,
           name: check_email_login.name,
           surname: check_email_login.surname,
+          sex: check_email_login.sex,
+          age: check_email_login.age,
+          country: check_email_login.country,
+          phone: check_email_login.phone,
           email: check_email_login.email,
           role: check_email_login.role,
         });
@@ -142,7 +156,11 @@ console.log(user.email)
           token: token, 
           id: user.id, 
           name: check_email_login.name, 
-          surname: check_email_login.surname, 
+          surname: check_email_login.surname,
+          sex: check_email_login.sex,
+          age: check_email_login.age,
+          country: check_email_login.country,
+          phone: check_email_login.phone, 
           email: check_email_login.email, 
           role: check_email_login.role 
         });
@@ -151,6 +169,69 @@ console.log(user.email)
       console.log("Error: " + err);
       res.status(404);
     }
+};
+
+
+module.exports.changeProfile = async function (req, res) {
+  try {
+    await User.sequelize.sync({ alter: true });
+    console.log(req.body);
+    const user = {
+      id: req.body.id,
+      name: req.body.name,
+      surname: req.body.surname,
+      sex: req.body.sex,
+      age: req.body.age,
+      country: req.body.country,
+      phone: req.body.phone,
+      email: req.body.email,
+      password: req.body.password,
+    };
+
+    await User.findAll({ where: { id: user.id }, raw: true })
+      .then((result) => {
+        if (result) console.log("result", result);
+        const flag = bcrypt.compareSync(user.password, result[0].password);
+        if (flag) {
+          User.update(
+            { name: user.name, surname: user.surname, sex: user.sex, age: user.age, country: user.country, phone: user.phone, email: user.email },
+            { where: { id: user.id } }
+          );
+          res.status(200).json({ flag: true });
+        } else {
+          res.status(404).json({ error: "Invalid password" });
+        }
+      })
+      .catch((err) => console.log(err));
+  } catch (err) {
+    console.log("Error: " + err);
+    res.status(404).json({ flag: false });
+  }
+};
+
+module.exports.validatePassword = async function (req, res) {
+  const user = {
+    id: req.body.id,
+    password: req.body.password,
+  };
+  console.log(req.body.id, req.body.password)
+  console.log('validate password')
+
+  await User.findAll({ where: { id: user.id }, raw: true }).then((result) => {
+
+    if (result) {
+      const flag = bcrypt.compareSync(user.password, result[0].password);
+      console.log(flag)
+      if (flag) {   
+        res.status(200).json({ flag: true });
+      } else if(!flag){
+        res.status(404).json({ error: "Invalid password" });
+      }
+    }else res.status(404).json({ error: 'Invalid password'})
+  });
+
+  // if (result != null) return result.password;
+  // return false;
 };
 
 module.exports.setId = async function (req, res) {

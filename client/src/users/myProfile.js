@@ -27,10 +27,6 @@ function MyProfile() {
     );
   }
 
-  const changeProfile = (id) => {
-    history.push("/users/checkPass");
-  };
-
   return (
     <div className="firstform9">
       <div className="form119">
@@ -47,7 +43,7 @@ function MyProfile() {
             {"  "}
             {store.users.userSurname}
           </p>
-          <p className="country">country</p>
+          <p className="country">{store.users.userCountry}</p>
 
           <p className="projects">0 created projects</p>
 
@@ -61,22 +57,22 @@ function MyProfile() {
         <div className="myself">
           <p>
             Sex:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userSex}</span>
           </p>
 
           <p>
             Age:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userAge}</span>
           </p>
 
           <p>
             Email:{" "}
             <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
           </p>
-<p>hello</p>
+
           <p>
             Phone:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userPhone}</span>
           </p>
           
           <Button
@@ -85,7 +81,7 @@ function MyProfile() {
           >
             Logout
           </Button>
-<br/>
+            <br/>
           <Button
             variant="warning"
             onClick={() => history.push("/users/deleteAccount")}

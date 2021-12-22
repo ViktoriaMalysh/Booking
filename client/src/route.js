@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/users/myAccounts" component={MyAccounts} />
 
         <Route path="/users/myProfile" component={MyProfile} />
-
+        <Route path="/users/changeProfile" component={ChangeProfile} />
         <Route path="/users/checkPass" component={CheckPassword} />
 
         <Route path="/" component={Home} />

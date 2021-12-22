@@ -20,6 +20,12 @@ export const IS_AUTH = 'USERS/IS_AUTH'
 export const USER_ID = 'USERS/USER_ID'
 export const USER_NAME = 'USERS/USER_NAME'
 export const USER_SURNAME = 'USERS/USER_SURNAME'
+
+export const USER_SEX = 'USERS/USER_SEX'
+export const USER_AGE = 'USERS/USER_AGE'
+export const USER_COUNTRY = 'USERS/USER_COUNTRY'
+export const USER_PHONE = 'USERS/USER_PHONE'
+
 export const USER_EMAIL = 'USERS/USER_EMAIL'
 export const USER_PASSWORD = 'USERS/USER_PASSWORD'
 export const USER_ROLE = 'USERS/USER_ROLE'
