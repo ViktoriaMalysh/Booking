@@ -82,6 +82,17 @@
   border-radius: 50%;
 }
 
+.alertGrid{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-areas: ". alert alert alert .";
+}
+.alertMessage{
+  text-align: center;
+  grid-area: alert;
+}
+
 .myself{
   font-size: 1.5em;
   font-family: Georgia;
@@ -133,6 +144,20 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: "button8 form77 form77 form77 .";
 }
+
+.pMessage{
+  text-align: center;
+  font-family: Georgia;
+  font-size: 2em;
+}
+
+.pMessage2{
+  text-align: center;
+  font-family: Georgia;
+  padding-top: 2em;
+  font-size: 1.5em;
+}
+
 .button8 {
   grid-area: button8;
 }
@@ -140,6 +165,14 @@
 .form7 {
   grid-area: form77;
   font-family: Georgia;
+}
+
+.form71 {
+  grid-area: form77;
+  padding: 5em;
+  text-align: center;
+  /* font-family: Georgia;
+  font-size: 2em; */
 }
 
 .form1111 {

@@ -21,6 +21,8 @@ export const USER_ID = 'USERS/USER_ID'
 export const USER_NAME = 'USERS/USER_NAME'
 export const USER_SURNAME = 'USERS/USER_SURNAME'
 
+export const USER_COUNT_PROJECT = 'USERS/USER_COUNT_PROJECT'
+
 export const USER_SEX = 'USERS/USER_SEX'
 export const USER_AGE = 'USERS/USER_AGE'
 export const USER_COUNTRY = 'USERS/USER_COUNTRY'

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Spinner } from "react-bootstrap";
-import { useSelector, connect } from "react-redux";
+import { useSelector, connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../App.css";
+import { fetchShowProject } from "../redux/actionProjects";
+import { SHOW_PROJECT, USER_COUNT_PROJECT } from "../redux/types";
 
 function MyProfile() {
   const [role, setRole] = useState("");
   let history = useHistory();
+  const dispatch = useDispatch();
   const store = useSelector((state) => state);
   const loading = useSelector((state) => state.app.loading);
 
@@ -17,6 +20,10 @@ function MyProfile() {
     } else if (store.users.userRole === 2) {
       setRole("admin");
     }
+console.log("length ", store.projects.showProject.length )
+    dispatch({ type: SHOW_PROJECT, payload: [{}] });
+    dispatch(fetchShowProject(store.users.userId));
+    dispatch({ type: USER_COUNT_PROJECT, payload: store.projects.showProject.length });
   }, []);
 
   if (loading) {
@@ -45,7 +52,7 @@ function MyProfile() {
           </p>
           <p className="country">{store.users.userCountry}</p>
 
-          <p className="projects">0 created projects</p>
+          <p className="projects">{store.projects.showProject.length } created projects</p>
 
           <Button
             variant="warning"
@@ -62,7 +69,7 @@ function MyProfile() {
 
           <p>
             Age:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userAge}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userAge} year</span>
           </p>
 
           <p>
@@ -72,7 +79,7 @@ function MyProfile() {
 
           <p>
             Phone:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userPhone}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>+380{store.users.userPhone}</span>
           </p>
           
           <Button

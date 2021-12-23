@@ -34,7 +34,7 @@ export const reducerProjects = (state = initialState, action) => {
     case HIDE_LOADER:
         return { ...state, loading: false };
     case FLAG_DELETE:
-      return { ...state, delete: true };
+      return { ...state, delete: action.payload };
 
     default:
       return state;

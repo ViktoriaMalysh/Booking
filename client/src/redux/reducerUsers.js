@@ -1,7 +1,8 @@
-import { USER_NAME, IS_AUTH, CHANGE, ERROR, USER_SURNAME, USER_EMAIL, USER_PASSWORD, USER_ROLE, USER_ID, CLEAR_USER, REQUESTED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_SUCCEEDED_CLOSE_USER, REQUESTED_FAILED_USER, SHOW_ALERT_USER, HIDE_ALERT_USER, FLAG, SUCCESS, USER_SEX, USER_AGE, USER_COUNTRY, USER_PHONE } from "./types";
+import { USER_NAME, IS_AUTH, CHANGE, ERROR, USER_SURNAME, USER_EMAIL, USER_PASSWORD, USER_ROLE, USER_ID, CLEAR_USER, REQUESTED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_SUCCEEDED_CLOSE_USER, REQUESTED_FAILED_USER, SHOW_ALERT_USER, HIDE_ALERT_USER, FLAG, SUCCESS, USER_SEX, USER_AGE, USER_COUNTRY, USER_PHONE, USER_COUNT_PROJECT } from "./types";
 
 const initialState = {
   isAuth: false,
+  userCountProject: 0,
   userName: "",
   userSurname: "",
   userSex: "",
@@ -40,7 +41,10 @@ export const reducerUsers = (state = initialState, action) => {
     case USER_PHONE:
       return { ...state, userPhone: action.payload };
 
-      case USER_EMAIL:
+    case USER_COUNT_PROJECT:
+      return { ...state, userCountProject: action.payload };
+
+    case USER_EMAIL:
       return { ...state, userEmail: action.payload };
     case USER_PASSWORD:
       return { ...state, userPassword: action.payload };

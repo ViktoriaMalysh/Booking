@@ -93,8 +93,8 @@ function ChangeProfile() {
               <Col xs="auto" className="my-1">
                 <Form.Select className="me-sm-2" id="inlineFormCustomSelect" onChange={(e) => setSex(e.target.value)}>
                   <option value="0">Choose...</option>
-                  <option value="1">Mele</option>
-                  <option value="2">Femele</option>
+                  <option value="male">Mele</option>
+                  <option value="femele">Femele</option>
                 </Form.Select>
               </Col>
             </Row>
