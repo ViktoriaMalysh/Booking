@@ -71,6 +71,11 @@ export const fetchAuth = (user) => {
         dispatch({type: USER_NAME, payload: res.data.name})
         dispatch({type: USER_SURNAME, payload: res.data.surname})
         dispatch({type: USER_EMAIL, payload: res.data.email})
+        dispatch({type: USER_SEX, payload: res.data.sex})
+        dispatch({type: USER_AGE, payload: res.data.age})
+        dispatch({type: USER_COUNTRY, payload: res.data.country})
+        dispatch({type: USER_PHONE, payload: res.data.phone})
+        dispatch({type: USER_ROLE, payload: res.data.role})
       })
       .then(
         (data) => dispatch(requestSuccessUser(data)),  
@@ -91,10 +96,16 @@ export const fetchLogin = (user) => {
         localStorage.setItem('token', res.data.token)
         dispatch({type: IS_AUTH, payload: true})
         dispatch({type: USER_ID, payload: res.data.id})
+        dispatch({type: USER_NAME, payload: res.data.name})
+        dispatch({type: USER_SURNAME, payload: res.data.surname})
+        dispatch({type: USER_EMAIL, payload: res.data.email})
         dispatch({type: USER_SEX, payload: res.data.sex})
         dispatch({type: USER_AGE, payload: res.data.age})
         dispatch({type: USER_COUNTRY, payload: res.data.country})
         dispatch({type: USER_PHONE, payload: res.data.phone})
+        dispatch({type: USER_ROLE, payload: res.data.role})
+
+        
         dispatch(alert('Success!'))
       })
       .then(

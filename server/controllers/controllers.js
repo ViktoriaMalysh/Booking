@@ -39,13 +39,25 @@ module.exports.authentication = async function (req, ress) {
       });
       await user.save();
       console.log(`${user.name} was saved to the database!`);
-      const id = await setIdUser(candidat);
+      // const id = await setIdUser(candidat);
+      const check_email_login = await checkEmail(candidat.email);
+      console.log("check", check_email_login)
       const token = jwt.sign(
-        { email: candidat.email, password: pass, role: candidat.role, id: id },
+        { email: candidat.email, password: pass, role: candidat.role, id: check_email_login.id },
         keys.jwt,
         { expiresIn: 300 }
       );
-      ress.status(200).json({ token: token, id: id, name: candidat.name, surname: candidat.surname, email: candidat.email });
+      ress.status(200).json({
+        token: token, 
+        id: check_email_login.id,
+        name: check_email_login.name,
+        surname: check_email_login.surname,
+        sex: check_email_login.sex,
+        age: check_email_login.age,
+        country: check_email_login.country,
+        phone: check_email_login.phone,
+        email: check_email_login.email,
+        role: check_email_login.role,});
     } else ress.status(404).json({ flag: false });
   } catch (err) {
     console.log("Error: " + err);

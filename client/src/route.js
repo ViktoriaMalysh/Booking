@@ -14,6 +14,12 @@ import MyAccounts from "./users/myAccounts";
 import ChangeProfile from "./users/changeProfile";
 import CheckPassword from "./users/checkPass";
 
+
+import UserProfile from "./admin/userProfile";
+
+import ShowProj from "./admin/showProj";
+import ShowUsers from "./admin/showUsers";
+
 import ShowProjects from "./projects/showProjects";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GuardedRoute from "./guardedRoute";
@@ -37,8 +43,15 @@ export default function App() {
         <Route path="/users/myAccounts" component={MyAccounts} />
 
         <Route path="/users/myProfile" component={MyProfile} />
+        
         <Route path="/users/changeProfile" component={ChangeProfile} />
         <Route path="/users/checkPass" component={CheckPassword} />
+
+        <Route path="/admin/profileUser" component={UserProfile} />
+        <Route path="/admin/showUsers" component={ShowUsers} />
+        <Route path="/admin/showProjects" component={ShowProj} />
+        {/* <Route path="/admin/checkPass" component={CheckPassword} /> */}
+
 
         <Route path="/" component={Home} />
 
