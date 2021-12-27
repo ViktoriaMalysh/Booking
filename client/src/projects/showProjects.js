@@ -27,7 +27,13 @@ function ShowProjects() {
 
   useEffect(() => {
     dispatch({ type: SHOW_PROJECT, payload: [{}] });
-    dispatch(fetchShowProject(store.users.userId));
+    if (store.users.userRole === 2) {
+      setBack(true);
+      dispatch(fetchShowProject(store.admin.idUserAdmin));
+    } else if (store.users.userRole === 1) {
+      dispatch(fetchShowProject(store.users.userId));
+    }
+
     setTimeout(() => {
       dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_PROJECT });
     }, 1000);
@@ -36,7 +42,12 @@ function ShowProjects() {
   useEffect(() => {
     if (store.projects.delete) {
       dispatch({ type: SHOW_PROJECT, payload: [{}] });
-      dispatch(fetchShowProject(store.users.userId));
+      if (store.users.userRole === 2) {
+        dispatch(fetchShowProject(store.admin.idUserAdmin));
+      } else if (store.users.userRole === 1) {
+        dispatch(fetchShowProject(store.users.userId));
+      }
+
       setTimeout(() => {
         dispatch({ type: SUCCESS, payload: false });
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_PROJECT });
@@ -55,12 +66,16 @@ function ShowProjects() {
   }, [store.projects.nameProject]);
 
   const handleBack = () => {
-    setBack(false);
-    dispatch({ type: SHOW_PROJECT, payload: [{}] });
-    dispatch(fetchShowProject(store.users.userId));
-    setTimeout(() => {
-      dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_PROJECT });
-    }, 1000);
+    if (store.users.userRole === 2) {
+      history.push("/admin/profileUser");
+    } else if (store.users.userRole === 1) {
+      setBack(false);
+      dispatch({ type: SHOW_PROJECT, payload: [{}] });
+      dispatch(fetchShowProject(store.users.userId));
+      setTimeout(() => {
+        dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_PROJECT });
+      }, 1000);
+    }
   };
 
   const handlePush = () => {

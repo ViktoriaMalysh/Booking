@@ -1,5 +1,14 @@
 import axios from "axios";
 import {
+  ADMIN_AGE,
+  ADMIN_COUNTRY,
+  ADMIN_EMAIL,
+  ADMIN_ID,
+  ADMIN_NAME,
+  ADMIN_PHONE,
+  ADMIN_ROLE,
+  ADMIN_SEX,
+  ADMIN_SURNAME,
   CLEAR_USER,
   HIDE_LOADER,
   IS_AUTH,
@@ -9,9 +18,8 @@ import {
   REQUESTED_SUCCEEDED_CLOSE_ADMIN,
   SHOW_ALERT,
   SHOW_LOADER,
-  SHOW_PROJECT,
   SHOW_PROJECT_ADMIN,
-  SHOW_USER_ADMIN,
+  SHOW_USERS_ADMIN,
 } from "./types";
 
 const requestAdmin = () => {
@@ -59,7 +67,7 @@ export const fetchShowProjectAdmin = (id) => {  //done
   };
 };
 
-export const fetchSearchProjectAdmin = (projectName) => {
+export const fetchSearchProjectAdmin = (projectName) => {   //done
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -79,7 +87,7 @@ export const fetchSearchProjectAdmin = (projectName) => {
   };
 };
 
-export const fetchDeleteProjectAdmin = (id) => {
+export const fetchDeleteProjectAdmin = (id) => {    //done
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -95,34 +103,12 @@ export const fetchDeleteProjectAdmin = (id) => {
   };
 };
 
-
-export const fetchDeleteAdmin = (token) => {
+export const fetchShowUsersAdmin = () => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
-      .post(`http://localhost:8080/auth/logout`, {}, {headers: {'authorization': token}})
-      .then((res) => {
-        localStorage.clear()
-        dispatch({type: IS_AUTH, payload: false})
-        dispatch({type: CLEAR_USER})
-        dispatch(alert('Account has been deleted!'))
-      })
-      .then(
-        (data) => dispatch(requestSuccessAdmin(data)),
-        (err) => dispatch(requestErrorAdmin(err, 'Error! Account has not been deleted')),
-      );
-  };
-};
-
-
-export const fetchShowUsersAdmin = (id) => {
-  return (dispatch) => {
-    dispatch(requestAdmin());
-    axios
-      .post(`http://localhost:8080/project/show`, {
-        id: id,
-      })
-      .then((res) => dispatch({ type: SHOW_PROJECT_ADMIN, payload: res.data }))
+      .get(`http://localhost:8080/admin/showUser`, {})
+      .then((res) => dispatch({ type: SHOW_USERS_ADMIN, payload: res.data }))
       .then(
         (data) => dispatch(requestSuccessAdmin(data)),
         dispatch({ type: SHOW_LOADER }),
@@ -134,14 +120,25 @@ export const fetchShowUsersAdmin = (id) => {
   };
 };
 
-export const fetchSearchUserAdmin = (id) => {
+export const fetchSearchUserAdmin = (id) => {   //done
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
       .post(`http://localhost:8080/admin/searchUser`, {
         id: id,
+        option: "",
       })
-      .then((res) => dispatch({ type: SHOW_USER_ADMIN, payload: res.data }))
+      .then((res) => {
+        dispatch({type: ADMIN_ID, payload: res.data[0].id})
+        dispatch({type: ADMIN_NAME, payload: res.data[0].name})
+        dispatch({type: ADMIN_SURNAME, payload: res.data[0].surname})
+        dispatch({type: ADMIN_EMAIL, payload: res.data[0].email})
+        dispatch({type: ADMIN_SEX, payload: res.data[0].sex})
+        dispatch({type: ADMIN_AGE, payload: res.data[0].age})
+        dispatch({type: ADMIN_COUNTRY, payload: res.data[0].country})
+        dispatch({type: ADMIN_PHONE, payload: res.data[0].phone})
+        dispatch({type: ADMIN_ROLE, payload: res.data[0].role}) 
+      })
       .then(
         (data) => dispatch(requestSuccessAdmin()),
         dispatch({ type: SHOW_LOADER }),
@@ -150,6 +147,49 @@ export const fetchSearchUserAdmin = (id) => {
         }, 300),
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN }),
         (err) => dispatch(requestErrorAdmin(err, "Project not found"))
+      );
+  };
+};
+
+
+
+export const fetchSearchUsersAdmin = (search, option) => {   //done
+  return (dispatch) => {
+    dispatch(requestAdmin());
+    axios
+      .post(`http://localhost:8080/admin/searchUser`, {
+        search: search,
+        option: option,
+      })
+      .then((res) => {
+        dispatch({type: SHOW_USERS_ADMIN, payload: res.data})
+      })
+      .then(
+        (data) => dispatch(requestSuccessAdmin()),
+        dispatch({ type: SHOW_LOADER }),
+        setTimeout(() => {
+          dispatch({ type: HIDE_LOADER });
+        }, 300),
+        dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN }),
+        (err) => dispatch(requestErrorAdmin(err, "Project not found"))
+      );
+  };
+};
+
+
+export const fetchDeleteUserAdmin = (id) => {
+  return (dispatch) => {
+    dispatch(requestAdmin());
+    axios
+      .post(`http://localhost:8080/admin/deleteUserAdmin`, {
+        id: id,
+      })
+      .then((res) => {
+        dispatch(alert('Account has been deleted!'))
+      })
+      .then(
+        (data) => dispatch(requestSuccessAdmin(data)),
+        (err) => dispatch(requestErrorAdmin(err, 'Error! Account has not been deleted')),
       );
   };
 };

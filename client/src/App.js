@@ -12,8 +12,6 @@ function ContainedButtons() {
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(false);
 
-  console.log("admin", admin);
-
   useEffect(() => {
     console.log("useEffect");
     const token = localStorage.getItem("token");

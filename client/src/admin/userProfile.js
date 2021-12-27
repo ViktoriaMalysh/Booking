@@ -5,24 +5,31 @@ import { useSelector, connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../App.css";
 import { fetchShowProject } from "../redux/actionProjects";
-import { SHOW_PROJECT, USER_COUNT_PROJECT } from "../redux/types";
+import {
+  ADMIN_COUNT_PROJECT,
+  PROJECT,
+  SHOW_PROJECT,
+  USER,
+} from "../redux/types";
 
 function UserProfile() {
-  const [role, setRole] = useState("");
   let history = useHistory();
   const dispatch = useDispatch();
   const store = useSelector((state) => state);
   const loading = useSelector((state) => state.app.loading);
 
   useEffect(() => {
-
     dispatch({ type: SHOW_PROJECT, payload: [{}] });
     dispatch(fetchShowProject(store.admin.idUserAdmin));
-    dispatch({ type: USER_COUNT_PROJECT, payload: store.projects.showProject.length });
-    setTimeout(() => {
-      dispatch({ type: SHOW_PROJECT, payload: [{}] });
-    },600)
   }, []);
+
+  useEffect(() => {
+    if (store.projects.showProject.length > 0)
+      dispatch({
+        type: ADMIN_COUNT_PROJECT,
+        payload: store.projects.showProject.length,
+      });
+  }, [store.projects.showProject]);
 
   if (loading) {
     return (
@@ -32,9 +39,35 @@ function UserProfile() {
     );
   }
 
+  const handleBack = () => {
+    if(store.admin.user){
+      history.push("/admin/showUsers");
+      setTimeout(() => {
+        dispatch({ type: USER, payload: false });
+      }, 1000)
+    }else if(store.admin.project){
+      history.push("/admin/showProjects");
+      setTimeout(() => {
+        dispatch({ type: PROJECT, payload: false });
+      }, 1000)
+    }
+
+  };
+
+  const handleUser = () => {
+    history.push("/projects/showProjects");
+  };
+
   return (
     <div className="firstform9">
+      
       <div className="form119">
+        <div className="button88">
+          <Button variant="warning" onClick={handleBack}>
+            &#8592;
+          </Button>
+        </div>
+
         <div className="image9">
           <img
             alt="Avatar"
@@ -44,13 +77,26 @@ function UserProfile() {
         </div>
         <div className="nameAndSurname">
           <p className="name">
-            {store.users.userName}
-            {"  "}
-            {store.users.userSurname}
-          </p>
-          <p className="country">{store.users.userCountry}</p>
+            {store.admin.adminName}
 
-          <p className="projects">{store.projects.showProject.length } created projects</p>
+            {"  "}
+            {store.admin.adminSurname}
+          </p>
+          <p className="country">{store.admin.adminCountry}</p>
+
+          <Button
+            variant="link"
+            style={{
+              color: "black",
+              fontFamily: "Georgia",
+              fontSize: "1.2em",
+              fontStyle: "italic",
+            }}
+            onClick={() => handleUser()}
+          >
+            {store.admin.adminCountProject}
+          </Button>
+          <span className="projects"> created projects</span>
 
           <Button
             variant="warning"
@@ -62,38 +108,38 @@ function UserProfile() {
         <div className="myself">
           <p>
             Sex:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userSex}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>
+              {store.admin.adminSex}
+            </span>
           </p>
 
           <p>
             Age:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userAge} year</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>
+              {store.admin.adminAge} year
+            </span>
           </p>
 
           <p>
             Email:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>{store.users.userEmail}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>
+              {store.admin.adminEmail}
+            </span>
           </p>
 
           <p>
             Phone:{" "}
-            <span className="myselfspan" style={{ fontStyle: "italic" }}>+380{store.users.userPhone}</span>
+            <span className="myselfspan" style={{ fontStyle: "italic" }}>
+              +380{store.admin.adminPhone}
+            </span>
           </p>
-          
-          <Button
-            variant="warning"
-            onClick={() => history.push("/users/logout")}
-          >
-            Logout
-          </Button>
-            <br/>
+
           <Button
             variant="warning"
             onClick={() => history.push("/users/deleteAccount")}
           >
             Delete Account
           </Button>
-
         </div>
       </div>
     </div>

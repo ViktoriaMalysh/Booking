@@ -104,7 +104,6 @@ export const fetchLogin = (user) => {
         dispatch({type: USER_COUNTRY, payload: res.data.country})
         dispatch({type: USER_PHONE, payload: res.data.phone})
         dispatch({type: USER_ROLE, payload: res.data.role})
-
         
         dispatch(alert('Success!'))
       })

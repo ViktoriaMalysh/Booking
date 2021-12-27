@@ -64,11 +64,15 @@
   font-family: Georgia;
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    " image image nameAndSurname nameAndSurname nameAndSurname ."
-    " myself myself myself myself . ."
+    "button88 image image nameAndSurname nameAndSurname nameAndSurname ."
+    ". myself myself myself myself . ."
     /* ". form form form ." */;
+}
+
+.button88 {
+  grid-area: button88;
 }
 
 .image9 {

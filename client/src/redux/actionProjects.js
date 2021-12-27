@@ -84,7 +84,7 @@ export const fetchShowProject = (id) => {
       })
       .then((res) => dispatch({ type: SHOW_PROJECT, payload: res.data }))
       .then(
-        (data) => dispatch(requestSuccessProject(data)),
+        (data) => dispatch(requestSuccessProject()),
         dispatch({ type: SHOW_LOADER }),
         setTimeout(() => {
           dispatch({ type: HIDE_LOADER });

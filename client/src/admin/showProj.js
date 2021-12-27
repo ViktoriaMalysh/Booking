@@ -6,6 +6,7 @@ import { Alert } from "../Alert";
 import {
   FLAG_DELETE,
   NAME_PROJECT_ADMIN,
+  PROJECT,
   REQUESTED_SUCCEEDED_CLOSE_ADMIN,
   SHOW_PROJECT_ADMIN,
   SHOW_USER_ID_ADMIN,
@@ -93,14 +94,12 @@ function ShowProjectsAdmin() {
   };
 
   const handleUser = (id) => {
-    // setBack(true);
-    
+    dispatch({ type: PROJECT, payload: true });
     dispatch({ type: SHOW_USER_ID_ADMIN, payload: id });
     dispatch({ type: SHOW_PROJECT_ADMIN, payload: [{}] });
     dispatch(fetchSearchUserAdmin(id));
+    history.push("/admin/profileUser");
     setTimeout(() => {
-      history.push("/admin/profileUser");
-      
       dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
     }, 1000);
     
@@ -121,6 +120,7 @@ function ShowProjectsAdmin() {
 
   return (
     <div>
+      
       {/* {store.projects.text && <Alert text={store.projects.text} />} */}
       <div className="form111">
         {back ? (
@@ -160,6 +160,7 @@ function ShowProjectsAdmin() {
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>ID USER</th>
                   <th>PROJECT NAME</th>
                   <th>MINUTES</th>
                   <th>DELETE</th>
@@ -169,6 +170,7 @@ function ShowProjectsAdmin() {
               <tbody>
                 {store.admin.showProjectsAdmin.map((item) => (
                   <tr key={item.id}>
+                    <td>{item.id}</td>
                     <td>
                       <Button
                         variant="link"
@@ -177,9 +179,9 @@ function ShowProjectsAdmin() {
                           fontFamily: "Georgia",
                           fontStyle: "italic",
                         }}
-                        onClick={() => handleUser(item.id)}
+                        onClick={() => handleUser(item.id_user)}
                       >
-                        {item.id}
+                        {item.id_user}
                       </Button>
                     </td>
                     <td>{item.projectName}</td>
