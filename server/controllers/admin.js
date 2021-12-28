@@ -50,8 +50,7 @@ module.exports.searchProj = async function (req, res) {
 
 //------------------------USERS---------------------------
 
-module.exports.showUser = async function (req, res) {
-  //done
+module.exports.showUser = async function (req, res) {       //done
   try {
     await User.sequelize.sync({ alter: true });
     await User.findAll({ raw: true })
@@ -65,10 +64,11 @@ module.exports.showUser = async function (req, res) {
   }
 };
 
-module.exports.deleteUser = async function (req, res) {
+module.exports.deleteUser = async function (req, res) {     //done
   try {
     await User.sequelize.sync({ alter: true });
-    const id = { id: req.body.id };
+    const id =  req.body.id;
+    console.log("id", id)
     const deleteUser = await User.destroy({ where: { id: id } });
     if (deleteUser === 1) res.status(200).json({ delete: true });
     else res.status(404).json({ delete: false });
@@ -78,23 +78,44 @@ module.exports.deleteUser = async function (req, res) {
   }
 };
 
-module.exports.searchUser = async function (req, res) {
+module.exports.searchUser = async function (req, res) {   //done
   try {
     await User.sequelize.sync({ alter: true });
     const option = req.body.option;
     console.log("option", option)
-    if (option > 1) {
+    if (option !== "") {
       const search = req.body.search
-      await User.findAll({ where: { option: search }, raw: true })
-      .then((result) => {
-        if (result) res.json(result)
-        else(res.status(404).json({message: "User not found"}))
-      })
-      .catch((err) => console.log(err));
-    } else {
-      const name = req.body.name;
-      console.log(name);
-      await User.findAll({ where: { name: name }, raw: true })
+      console.log("search-------------------", search)
+      if(option === "name"){
+        await User.findAll({ where: { name: search }, raw: true })
+        .then((result) => {
+          if (result) res.json(result)
+          else(res.status(404).json({message: "User not found"}))
+        })
+        .catch((err) => console.log(err));
+      }
+      else if(option === "surname"){
+        await User.findAll({ where: { surname: search }, raw: true })
+        .then((result) => {
+          if (result) res.json(result)
+          else(res.status(404).json({message: "User not found"}))
+        })
+        .catch((err) => console.log(err));
+      }
+
+      else if(option === "email"){
+        await User.findAll({ where: { email: search }, raw: true })
+        .then((result) => {
+          if (result) res.json(result)
+          else(res.status(404).json({message: "User not found"}))
+        })
+        .catch((err) => console.log(err));
+      }
+
+    } else if(option === ""){
+      const id = req.body.id;
+      console.log(id);
+      await User.findAll({ where: { id: id }, raw: true })
         .then((result) => {
           if (result) res.json(result)
           else(res.status(404).json({message: "User not found"}))
@@ -106,19 +127,3 @@ module.exports.searchUser = async function (req, res) {
     res.status(404).json({ flag: false });
   }
 };
-
-// module.exports.searchUser = async function (req, res) {
-//   try {
-//     await User.sequelize.sync({ alter: true });
-//     const name = req.body.name;
-//     console.log(name)
-//     await User.findAll({ where: { name: name }, raw: true })
-//       .then((result) => {
-//         if (result) res.json(result);
-//       })
-//       .catch((err) => console.log(err));
-//   } catch (err) {
-//     console.log("Error: " + err);
-//     res.status(404).json({ flag: false });
-//   }
-// };

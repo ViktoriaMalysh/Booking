@@ -129,6 +129,7 @@ export const fetchSearchUserAdmin = (id) => {   //done
         option: "",
       })
       .then((res) => {
+        console.log("res.data", res.data[0])
         dispatch({type: ADMIN_ID, payload: res.data[0].id})
         dispatch({type: ADMIN_NAME, payload: res.data[0].name})
         dispatch({type: ADMIN_SURNAME, payload: res.data[0].surname})
@@ -162,26 +163,28 @@ export const fetchSearchUsersAdmin = (search, option) => {   //done
         option: option,
       })
       .then((res) => {
+        console.log('-------------------------------------------fetchSearchUsersAdmin', res.data)
         dispatch({type: SHOW_USERS_ADMIN, payload: res.data})
       })
       .then(
         (data) => dispatch(requestSuccessAdmin()),
         dispatch({ type: SHOW_LOADER }),
-        setTimeout(() => {
+        setTimeout(() => { 
           dispatch({ type: HIDE_LOADER });
         }, 300),
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN }),
         (err) => dispatch(requestErrorAdmin(err, "Project not found"))
       );
-  };
+  };    
 };
 
 
-export const fetchDeleteUserAdmin = (id) => {
+
+export const fetchDeleteUserAdmin = (id) => {    //
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
-      .post(`http://localhost:8080/admin/deleteUserAdmin`, {
+      .post(`http://localhost:8080/admin/deleteUser`, {
         id: id,
       })
       .then((res) => {

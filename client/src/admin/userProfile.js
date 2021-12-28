@@ -4,13 +4,16 @@ import { Button, Spinner } from "react-bootstrap";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "../App.css";
+import "../admin.css";
 import { fetchShowProject } from "../redux/actionProjects";
 import {
   ADMIN_COUNT_PROJECT,
   PROJECT,
+  REQUESTED_SUCCEEDED_CLOSE_ADMIN,
   SHOW_PROJECT,
   USER,
 } from "../redux/types";
+import { fetchDeleteUserAdmin } from "../redux/actionAdmin";
 
 function UserProfile() {
   let history = useHistory();
@@ -54,16 +57,26 @@ function UserProfile() {
 
   };
 
+
+  const handleDelete = () => {
+    
+    dispatch(fetchDeleteUserAdmin(store.admin.idUserAdmin));
+    setTimeout(() => {
+      history.push("/admin/showUsers");
+      dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
+    }, 1400);
+  };
+
   const handleUser = () => {
     history.push("/projects/showProjects");
   };
 
   return (
-    <div className="firstform9">
+    <div className="firstform9admin">
       
-      <div className="form119">
+      <div className="form119admin">
         <div className="button88">
-          <Button variant="warning" onClick={handleBack}>
+          <Button variant="info" onClick={handleBack}>
             &#8592;
           </Button>
         </div>
@@ -87,7 +100,7 @@ function UserProfile() {
           <Button
             variant="link"
             style={{
-              color: "black",
+              color: "white",
               fontFamily: "Georgia",
               fontSize: "1.2em",
               fontStyle: "italic",
@@ -98,12 +111,6 @@ function UserProfile() {
           </Button>
           <span className="projects"> created projects</span>
 
-          <Button
-            variant="warning"
-            onClick={() => history.push("/users/checkPass")}
-          >
-            Profile Settings
-          </Button>
         </div>
         <div className="myself">
           <p>
@@ -135,8 +142,8 @@ function UserProfile() {
           </p>
 
           <Button
-            variant="warning"
-            onClick={() => history.push("/users/deleteAccount")}
+            variant="primary"
+            onClick={handleDelete}
           >
             Delete Account
           </Button>

@@ -23,6 +23,7 @@ import {
   fetchShowProjectAdmin,
   fetchShowUsersAdmin,
 } from "../redux/actionAdmin";
+import "../admin.css";
 
 function ShowProjectsAdmin() {
   const dispatch = useDispatch();
@@ -55,8 +56,11 @@ function ShowProjectsAdmin() {
 
   useEffect(() => {
     if (store.admin.searchUserAdmin === searchUser) {
-      console.log('searchOptions', searchOptions)
-      dispatch(fetchSearchUsersAdmin(store.admin.searchUserAdmin, searchOptions));
+      console.log("store.admin.searchUserAdmin", store.admin.searchUserAdmin);
+      console.log("searchOptions", searchOptions);
+      dispatch(
+        fetchSearchUsersAdmin(store.admin.searchUserAdmin, searchOptions)
+      );
       setTimeout(() => {
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
       }, 1000);
@@ -93,7 +97,7 @@ function ShowProjectsAdmin() {
   }
 
   const handleFind = () => {
-    setBack(true)
+    setBack(true);
     dispatch({ type: NAME_USER_ADMIN, payload: searchUser });
     // setBack(true);///been
   };
@@ -110,26 +114,29 @@ function ShowProjectsAdmin() {
     }, 1000);
   };
 
-  // function DeleteProject(id) {
-  //   dispatch(fetchDeleteProjectAdmin(id));
-  //   dispatch({ type: FLAG_DELETE, payload: true });
-  // }
-
   if (loading) {
     return (
-      <div className="form1111">
-        <Spinner animation="border" variant="danger" role="status"></Spinner>
+      <div className="adminform">
+        <div className="form1111admin">
+          <div className="spinner1">
+            <Spinner
+              animation="border"
+              variant="primary"
+              role="status"
+            ></Spinner>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className="admin">
       {/* {store.projects.text && <Alert text={store.projects.text} />} */}
-      <div className="form111">
+      <div className="form111admin">
         {back ? (
           <div className="button8">
-            <Button variant="warning" onClick={handleBack()}>
+            <Button variant="info" onClick={handleBack()}>
               &#8592;
             </Button>
           </div>
@@ -137,7 +144,7 @@ function ShowProjectsAdmin() {
           <div></div>
         )}
 
-        <div className="form7">
+        <div className="form7admin">
           <Form>
             <Row className="align-items-center">
               <Col xs="auto" className="my-1">
@@ -179,11 +186,17 @@ function ShowProjectsAdmin() {
             ) : (
               <div></div>
             )}
-            <Button variant="danger" type="submit" onClick={handleFind}>
+            <Button variant="primary" type="submit" onClick={handleFind}>
               Find
             </Button>{" "}
             <br></br> <br></br>
-            <Table striped bordered hover style={{ fontStyle: "italic" }}>
+            <Table
+              striped
+              bordered
+              hover
+              variant="dark"
+              style={{ fontStyle: "italic" }}
+            >
               <thead>
                 <tr>
                   <th>ID</th>
@@ -204,7 +217,7 @@ function ShowProjectsAdmin() {
                       <Button
                         variant="link"
                         style={{
-                          color: "black",
+                          color: "white",
                           fontFamily: "Georgia",
                           fontStyle: "italic",
                         }}
@@ -213,13 +226,13 @@ function ShowProjectsAdmin() {
                         {item.id}
                       </Button>
                     </td>
-                    <td>{item.name}</td>
-                    <td>{item.surname}</td>
-                    <td>{item.email}</td>
-                    <td>{item.sex}</td>
-                    <td>{item.country}</td>
-                    <td>{item.age}</td>
-                    <td>{item.phone}</td>
+                    <td>{item.name ? item.name : " - "}</td>
+                    <td>{item.surname ? item.surname : " - "}</td>
+                    <td>{item.email ? item.email : " - "}</td>
+                    <td>{item.sex ? item.sex : " - "}</td>
+                    <td>{item.country ? item.country : " - "}</td>
+                    <td>{item.age ? item.age : " - "}</td>
+                    <td>{item.phone > 0 ? "+380" + item.phone : "-"}</td>
                   </tr>
                 ))}
               </tbody>

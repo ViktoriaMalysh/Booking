@@ -16,6 +16,7 @@ import CheckPassword from "./users/checkPass";
 
 
 import UserProfile from "./admin/userProfile";
+import Profile from "./admin/Profile";
 
 import ShowProj from "./admin/showProj";
 import ShowUsers from "./admin/showUsers";
@@ -48,6 +49,8 @@ export default function App() {
         <Route path="/users/checkPass" component={CheckPassword} />
 
         <Route path="/admin/profileUser" component={UserProfile} />
+
+        <Route path="/admin/profile" component={Profile} />
         <Route path="/admin/showUsers" component={ShowUsers} />
         <Route path="/admin/showProjects" component={ShowProj} />
         {/* <Route path="/admin/checkPass" component={CheckPassword} /> */}

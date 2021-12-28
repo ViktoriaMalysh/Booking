@@ -119,13 +119,13 @@ function ShowProjectsAdmin() {
   }
 
   return (
-    <div>
+    <div className="admin">
       
       {/* {store.projects.text && <Alert text={store.projects.text} />} */}
-      <div className="form111">
+      <div className="form111admin">
         {back ? (
           <div className="button8">
-            <Button variant="warning" onClick={handleBack}>
+            <Button variant="info" onClick={handleBack}>
               &#8592;
             </Button>
           </div>
@@ -133,9 +133,9 @@ function ShowProjectsAdmin() {
           <div></div>
         )}
 
-        <div className="form7">
+        <div className="form7admin">
           <Form>
-            <Row className="mb-3">
+            <Row className="align-items-center">
               <Form.Label>
                 <h4>Enter the name of project:</h4>
               </Form.Label>
@@ -152,11 +152,11 @@ function ShowProjectsAdmin() {
                 />
               </Form.Group>
             </Row>
-            <Button variant="danger" type="submit" onClick={handleSubmit}>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
               Find
             </Button>{" "}
             <br></br> <br></br>
-            <Table striped bordered hover style={{ fontStyle: "italic" }}>
+            <Table striped bordered hover variant="dark" style={{ fontStyle: "italic" }}>
               <thead>
                 <tr>
                   <th>ID</th>
@@ -175,7 +175,7 @@ function ShowProjectsAdmin() {
                       <Button
                         variant="link"
                         style={{
-                          color: "black",
+                          color: "white",
                           fontFamily: "Georgia",
                           fontStyle: "italic",
                         }}
