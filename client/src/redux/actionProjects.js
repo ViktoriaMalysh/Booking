@@ -41,7 +41,6 @@ export const alert = (message) => {
 export const fetchTime = (project) => {
   return (dispatch) => {
     const time = project.end - project.start;
-    console.log("time", time);
     dispatch(requestProject());
     axios
       .post(`http://localhost:8080/project/addTime`, {
@@ -69,7 +68,7 @@ export const fetchNewProject = (project) => {
           dispatch(requestSuccessProject(`Project ${data} was created!`)),
         (err) =>
           dispatch(
-            requestErrorProject(err, `Error! New project was not created`)
+            requestErrorProject(err, 'Error! New project wasn`t created')
           )
       );
   };

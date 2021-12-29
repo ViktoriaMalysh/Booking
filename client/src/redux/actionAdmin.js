@@ -7,11 +7,9 @@ import {
   ADMIN_NAME,
   ADMIN_PHONE,
   ADMIN_ROLE,
-  ADMIN_SEX,
+  ADMIN_GENDER,
   ADMIN_SURNAME,
-  CLEAR_USER,
   HIDE_LOADER,
-  IS_AUTH,
   REQUESTED_ADMIN,
   REQUESTED_FAILED_ADMIN,
   REQUESTED_SUCCEEDED_ADMIN,
@@ -50,7 +48,7 @@ export const alert = (message) => {
   };
 };
 
-export const fetchShowProjectAdmin = (id) => {  //done
+export const fetchShowProjectAdmin = (id) => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -67,7 +65,7 @@ export const fetchShowProjectAdmin = (id) => {  //done
   };
 };
 
-export const fetchSearchProjectAdmin = (projectName) => {   //done
+export const fetchSearchProjectAdmin = (projectName) => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -87,7 +85,7 @@ export const fetchSearchProjectAdmin = (projectName) => {   //done
   };
 };
 
-export const fetchDeleteProjectAdmin = (id) => {    //done
+export const fetchDeleteProjectAdmin = (id) => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -120,7 +118,7 @@ export const fetchShowUsersAdmin = () => {
   };
 };
 
-export const fetchSearchUserAdmin = (id) => {   //done
+export const fetchSearchUserAdmin = (id) => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -129,16 +127,15 @@ export const fetchSearchUserAdmin = (id) => {   //done
         option: "",
       })
       .then((res) => {
-        console.log("res.data", res.data[0])
-        dispatch({type: ADMIN_ID, payload: res.data[0].id})
-        dispatch({type: ADMIN_NAME, payload: res.data[0].name})
-        dispatch({type: ADMIN_SURNAME, payload: res.data[0].surname})
-        dispatch({type: ADMIN_EMAIL, payload: res.data[0].email})
-        dispatch({type: ADMIN_SEX, payload: res.data[0].sex})
-        dispatch({type: ADMIN_AGE, payload: res.data[0].age})
-        dispatch({type: ADMIN_COUNTRY, payload: res.data[0].country})
-        dispatch({type: ADMIN_PHONE, payload: res.data[0].phone})
-        dispatch({type: ADMIN_ROLE, payload: res.data[0].role}) 
+        dispatch({ type: ADMIN_ID, payload: res.data[0].id });
+        dispatch({ type: ADMIN_NAME, payload: res.data[0].name });
+        dispatch({ type: ADMIN_SURNAME, payload: res.data[0].surname });
+        dispatch({ type: ADMIN_EMAIL, payload: res.data[0].email });
+        dispatch({ type: ADMIN_GENDER, payload: res.data[0].gender });
+        dispatch({ type: ADMIN_AGE, payload: res.data[0].age });
+        dispatch({ type: ADMIN_COUNTRY, payload: res.data[0].country });
+        dispatch({ type: ADMIN_PHONE, payload: res.data[0].phone });
+        dispatch({ type: ADMIN_ROLE, payload: res.data[0].role });
       })
       .then(
         (data) => dispatch(requestSuccessAdmin()),
@@ -147,14 +144,12 @@ export const fetchSearchUserAdmin = (id) => {   //done
           dispatch({ type: HIDE_LOADER });
         }, 300),
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN }),
-        (err) => dispatch(requestErrorAdmin(err, "Project not found"))
+        (err) => dispatch(requestErrorAdmin(err, "User not found"))
       );
   };
 };
 
-
-
-export const fetchSearchUsersAdmin = (search, option) => {   //done
+export const fetchSearchUsersAdmin = (search, option) => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -163,24 +158,21 @@ export const fetchSearchUsersAdmin = (search, option) => {   //done
         option: option,
       })
       .then((res) => {
-        console.log('-------------------------------------------fetchSearchUsersAdmin', res.data)
-        dispatch({type: SHOW_USERS_ADMIN, payload: res.data})
+        dispatch({ type: SHOW_USERS_ADMIN, payload: res.data });
       })
       .then(
         (data) => dispatch(requestSuccessAdmin()),
         dispatch({ type: SHOW_LOADER }),
-        setTimeout(() => { 
+        setTimeout(() => {
           dispatch({ type: HIDE_LOADER });
         }, 300),
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN }),
-        (err) => dispatch(requestErrorAdmin(err, "Project not found"))
+        (err) => dispatch(requestErrorAdmin(err, "User not found"))
       );
-  };    
+  };
 };
 
-
-
-export const fetchDeleteUserAdmin = (id) => {    //
+export const fetchDeleteUserAdmin = (id) => {
   return (dispatch) => {
     dispatch(requestAdmin());
     axios
@@ -188,11 +180,14 @@ export const fetchDeleteUserAdmin = (id) => {    //
         id: id,
       })
       .then((res) => {
-        dispatch(alert('Account has been deleted!'))
+        dispatch(alert("Account has been deleted!"));
       })
       .then(
         (data) => dispatch(requestSuccessAdmin(data)),
-        (err) => dispatch(requestErrorAdmin(err, 'Error! Account has not been deleted')),
+        (err) =>
+          dispatch(
+            requestErrorAdmin(err, "Error! Account has not been deleted")
+          )
       );
   };
 };

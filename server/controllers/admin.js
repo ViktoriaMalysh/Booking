@@ -4,7 +4,6 @@ const { User } = require("../sequelize");
 //------------------------PROJECT---------------------------
 
 module.exports.showProj = async function (req, res) {
-  //done
   try {
     await Project.sequelize.sync({ alter: true });
     await Project.findAll({ raw: true })
@@ -19,7 +18,6 @@ module.exports.showProj = async function (req, res) {
 };
 
 module.exports.deleteProj = async function (req, res) {
-  //done
   try {
     await Project.sequelize.sync({ alter: true });
     const project = { id: req.body.id };
@@ -33,7 +31,6 @@ module.exports.deleteProj = async function (req, res) {
 };
 
 module.exports.searchProj = async function (req, res) {
-  //done
   try {
     await Project.sequelize.sync({ alter: true });
     const projectName = req.body.projectName;
@@ -50,7 +47,7 @@ module.exports.searchProj = async function (req, res) {
 
 //------------------------USERS---------------------------
 
-module.exports.showUser = async function (req, res) {       //done
+module.exports.showUser = async function (req, res) {
   try {
     await User.sequelize.sync({ alter: true });
     await User.findAll({ raw: true })
@@ -64,11 +61,10 @@ module.exports.showUser = async function (req, res) {       //done
   }
 };
 
-module.exports.deleteUser = async function (req, res) {     //done
+module.exports.deleteUser = async function (req, res) {
   try {
     await User.sequelize.sync({ alter: true });
-    const id =  req.body.id;
-    console.log("id", id)
+    const id = req.body.id;
     const deleteUser = await User.destroy({ where: { id: id } });
     if (deleteUser === 1) res.status(200).json({ delete: true });
     else res.status(404).json({ delete: false });
@@ -78,47 +74,40 @@ module.exports.deleteUser = async function (req, res) {     //done
   }
 };
 
-module.exports.searchUser = async function (req, res) {   //done
+module.exports.searchUser = async function (req, res) {
   try {
     await User.sequelize.sync({ alter: true });
     const option = req.body.option;
-    console.log("option", option)
     if (option !== "") {
-      const search = req.body.search
-      console.log("search-------------------", search)
-      if(option === "name"){
+      const search = req.body.search;
+      if (option === "name") {
         await User.findAll({ where: { name: search }, raw: true })
-        .then((result) => {
-          if (result) res.json(result)
-          else(res.status(404).json({message: "User not found"}))
-        })
-        .catch((err) => console.log(err));
-      }
-      else if(option === "surname"){
+          .then((result) => {
+            if (result) res.json(result);
+            else res.status(404).json({ message: "User not found" });
+          })
+          .catch((err) => console.log(err));
+      } else if (option === "surname") {
         await User.findAll({ where: { surname: search }, raw: true })
-        .then((result) => {
-          if (result) res.json(result)
-          else(res.status(404).json({message: "User not found"}))
-        })
-        .catch((err) => console.log(err));
-      }
-
-      else if(option === "email"){
+          .then((result) => {
+            if (result) res.json(result);
+            else res.status(404).json({ message: "User not found" });
+          })
+          .catch((err) => console.log(err));
+      } else if (option === "email") {
         await User.findAll({ where: { email: search }, raw: true })
-        .then((result) => {
-          if (result) res.json(result)
-          else(res.status(404).json({message: "User not found"}))
-        })
-        .catch((err) => console.log(err));
+          .then((result) => {
+            if (result) res.json(result);
+            else res.status(404).json({ message: "User not found" });
+          })
+          .catch((err) => console.log(err));
       }
-
-    } else if(option === ""){
+    } else if (option === "") {
       const id = req.body.id;
-      console.log(id);
       await User.findAll({ where: { id: id }, raw: true })
         .then((result) => {
-          if (result) res.json(result)
-          else(res.status(404).json({message: "User not found"}))
+          if (result) res.json(result);
+          else res.status(404).json({ message: "User not found" });
         })
         .catch((err) => console.log(err));
     }

@@ -101,8 +101,6 @@ function Login() {
             variant="warning"
             type="submit"
             style={{
-              // marginLeft: "7em",
-              // marginRight: "auto",
               marginTop: "1em",
             }}
             onClick={handleSubmit}
@@ -113,11 +111,7 @@ function Login() {
           <Button
             variant="warning"
             type="submit"
-            style={{
-              // marginLeft: "7em",
-              // marginRight: "auto",
-              marginTop: "0.5em",
-            }}
+            style={{ marginTop: "0.5em" }}
             onClick={handlePush}
           >
             Authorization

@@ -129,73 +129,153 @@ function ShowProjects() {
 
   return (
     <div>
-      {store.projects.text && <Alert text={store.projects.text} />}
-      <div className="form111">
-        {back ? (
-          <div className="button8">
-            <Button variant="warning" onClick={handleBack}>
-              &#8592;
-            </Button>
+      {store.users.userRole === 1 ? (
+        <div>
+          {store.projects.text && <Alert text={store.projects.text} />}
+          <div className="form111">
+            {back ? (
+              <div className="button8">
+                <Button variant="warning" onClick={handleBack}>
+                  &#8592;
+                </Button>
+              </div>
+            ) : (
+              <div></div>
+            )}
+
+            <div className="form7">
+              <Form>
+                <Row className="mb-3">
+                  <Form.Label>
+                    <h4>Enter the name of project:</h4>
+                  </Form.Label>
+
+                  <Form.Group
+                    as={Col}
+                    md="4"
+                    controlId="formGridAddress1"
+                    onChange={(e) => setSearchProject(e.target.value)}
+                  >
+                    <Form.Control
+                      placeholder="Enter project name"
+                      style={{ fontStyle: "italic" }}
+                    />
+                  </Form.Group>
+                </Row>
+                <Button variant="danger" type="submit" onClick={handleSubmit}>
+                  Find
+                </Button>{" "}
+                <br></br> <br></br>
+                <Table striped bordered hover style={{ fontStyle: "italic" }}>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>PROJECT NAME</th>
+                      <th>MINUTES</th>
+                      <th>DELETE</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {store.projects.showProject.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.projectName}</td>
+                        <td>{item.h}</td>
+                        <td>
+                          <Button
+                            variant="danger"
+                            type="submit"
+                            onClick={() => DeleteProject(item.id)}
+                          >
+                            X
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Form>
+            </div>
           </div>
-        ) : (
-          <div></div>
-        )}
-
-        <div className="form7">
-          <Form>
-            <Row className="mb-3">
-              <Form.Label>
-                <h4>Enter the name of project:</h4>
-              </Form.Label>
-
-              <Form.Group
-                as={Col}
-                md="4"
-                controlId="formGridAddress1"
-                onChange={(e) => setSearchProject(e.target.value)}
-              >
-                <Form.Control
-                  placeholder="Enter project name"
-                  style={{ fontStyle: "italic" }}
-                />
-              </Form.Group>
-            </Row>
-            <Button variant="danger" type="submit" onClick={handleSubmit}>
-              Find
-            </Button>{" "}
-            <br></br> <br></br>
-            <Table striped bordered hover style={{ fontStyle: "italic" }}>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>PROJECT NAME</th>
-                  <th>MINUTES</th>
-                  <th>DELETE</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {store.projects.showProject.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.id}</td>
-                    <td>{item.projectName}</td>
-                    <td>{item.h}</td>
-                    <td>
-                      <Button
-                        variant="danger"
-                        type="submit"
-                        onClick={() => DeleteProject(item.id)}
-                      >
-                        X
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </Form>
         </div>
-      </div>
+      ) : (
+        <div className="admin">
+          {store.projects.text && <Alert text={store.projects.text} />}
+          <div className="form111admin">
+            {back ? (
+              <div className="button8">
+                <Button variant="info" onClick={handleBack}>
+                  &#8592;
+                </Button>
+              </div>
+            ) : (
+              <div></div>
+            )}
+
+            <div className="form7admin">
+              <Form>
+                <Row className="mb-3">
+                  <Form.Label>
+                    <h4>Enter the name of project:</h4>
+                  </Form.Label>
+
+                  <Form.Group
+                    as={Col}
+                    md="4"
+                    controlId="formGridAddress1"
+                    onChange={(e) => setSearchProject(e.target.value)}
+                  >
+                    <Form.Control
+                      placeholder="Enter project name"
+                      style={{ fontStyle: "italic" }}
+                    />
+                  </Form.Group>
+                </Row>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                  Find
+                </Button>{" "}
+                <br></br> <br></br>
+                <Table
+                  striped
+                  bordered
+                  hover
+                  variant="dark"
+                  style={{ fontStyle: "italic" }}
+                >
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>PROJECT NAME</th>
+                      <th>MINUTES</th>
+                      <th>DELETE</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {store.projects.showProject.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.projectName}</td>
+                        <td>{item.h}</td>
+                        <td>
+                          <Button
+                            variant="danger"
+                            type="submit"
+                            onClick={() => DeleteProject(item.id)}
+                          >
+                            X
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

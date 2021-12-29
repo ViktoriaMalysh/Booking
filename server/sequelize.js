@@ -10,7 +10,7 @@ const sequelize = new Sequelize('db_2', 'vika123', '123', {
   const User = sequelize.define("users", {
     name: DataTypes.TEXT, 
     surname: DataTypes.TEXT,
-    sex: DataTypes.TEXT,
+    gender: DataTypes.TEXT,
     country: DataTypes.TEXT,
     age: DataTypes.INTEGER,
     phone: DataTypes.INTEGER,

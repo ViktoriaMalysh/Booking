@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
+import "./style/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -7,13 +7,12 @@ import { useSelector, useDispatch, connect } from "react-redux";
 import { fetchVerifyToken } from "./redux/actionUsers";
 import { REQUESTED_SUCCEEDED_CLOSE_USER } from "./redux/types";
 
-function ContainedButtons() {
+function App() {
   const store = useSelector((state) => state);
   const dispatch = useDispatch();
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect");
     const token = localStorage.getItem("token");
     dispatch(fetchVerifyToken(token));
     setTimeout(() => {
@@ -22,7 +21,6 @@ function ContainedButtons() {
   }, []);
 
   useEffect(() => {
-    console.log("role", store.users.userRole);
     if (store.users.userRole === 2) setAdmin(true);
     else setAdmin(false);
   }, [store.users.userRole]);
@@ -161,4 +159,4 @@ function mapStateToProps(state) {
   return { store: state };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContainedButtons);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

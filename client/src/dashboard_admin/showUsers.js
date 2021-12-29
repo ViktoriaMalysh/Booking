@@ -2,28 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Spinner, Col, Form, Row } from "react-bootstrap";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Alert } from "../Alert";
 import {
-  FLAG_DELETE,
-  NAME_PROJECT_ADMIN,
   NAME_USER_ADMIN,
   REQUESTED_SUCCEEDED_CLOSE_ADMIN,
   SHOW_PROJECT_ADMIN,
   SHOW_USERS_ADMIN,
   SHOW_USER_ID_ADMIN,
-  SUCCESS,
   USER,
 } from "../redux/types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  fetchDeleteProjectAdmin,
-  fetchSearchProjectAdmin,
   fetchSearchUserAdmin,
   fetchSearchUsersAdmin,
-  fetchShowProjectAdmin,
   fetchShowUsersAdmin,
 } from "../redux/actionAdmin";
-import "../admin.css";
+import "../style/admin.css";
 
 function ShowProjectsAdmin() {
   const dispatch = useDispatch();
@@ -41,18 +34,6 @@ function ShowProjectsAdmin() {
       dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
     }, 1000);
   }, []);
-
-  // useEffect(() => {
-  //   if (store.projects.delete) {
-  //     dispatch({ type: SHOW_PROJECT_ADMIN, payload: [{}] });
-  //     dispatch(fetchShowProjectAdmin());
-  //     setTimeout(() => {
-  //       dispatch({ type: SUCCESS, payload: false });
-  //       dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
-  //       dispatch({ type: FLAG_DELETE, payload: false });
-  //     }, 600);
-  //   }
-  // }, [store.projects.delete]);
 
   useEffect(() => {
     if (store.admin.searchUserAdmin === searchUser) {
@@ -99,11 +80,9 @@ function ShowProjectsAdmin() {
   const handleFind = () => {
     setBack(true);
     dispatch({ type: NAME_USER_ADMIN, payload: searchUser });
-    // setBack(true);///been
   };
 
   const handleUser = (id) => {
-    // setBack(true);
     dispatch({ type: USER, payload: true });
     dispatch({ type: SHOW_USER_ID_ADMIN, payload: id });
     dispatch({ type: SHOW_PROJECT_ADMIN, payload: [{}] });
@@ -132,7 +111,6 @@ function ShowProjectsAdmin() {
 
   return (
     <div className="admin">
-      {/* {store.projects.text && <Alert text={store.projects.text} />} */}
       <div className="form111admin">
         {back ? (
           <div className="button8">
@@ -203,7 +181,7 @@ function ShowProjectsAdmin() {
                   <th>NAME</th>
                   <th>SURNAME</th>
                   <th>EMAIL</th>
-                  <th>SEX</th>
+                  <th>GENDER</th>
                   <th>COUNTRY</th>
                   <th>AGE</th>
                   <th>PHONE</th>
@@ -229,7 +207,7 @@ function ShowProjectsAdmin() {
                     <td>{item.name ? item.name : " - "}</td>
                     <td>{item.surname ? item.surname : " - "}</td>
                     <td>{item.email ? item.email : " - "}</td>
-                    <td>{item.sex ? item.sex : " - "}</td>
+                    <td>{item.gender ? item.gender : " - "}</td>
                     <td>{item.country ? item.country : " - "}</td>
                     <td>{item.age ? item.age : " - "}</td>
                     <td>{item.phone > 0 ? "+380" + item.phone : "-"}</td>
@@ -245,10 +223,9 @@ function ShowProjectsAdmin() {
 }
 
 const mapDispatchToProps = {
-  fetchShowProjectAdmin,
-  fetchSearchProjectAdmin,
-  fetchDeleteProjectAdmin,
   fetchSearchUserAdmin,
+  fetchSearchUsersAdmin,
+  fetchShowUsersAdmin,
 };
 
 function mapStateToProps(state) {

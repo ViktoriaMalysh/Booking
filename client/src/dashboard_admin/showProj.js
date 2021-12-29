@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Spinner, Col, Form, Row } from "react-bootstrap";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Alert } from "../Alert";
 import {
   FLAG_DELETE,
   NAME_PROJECT_ADMIN,
@@ -19,6 +18,7 @@ import {
   fetchSearchUserAdmin,
   fetchShowProjectAdmin,
 } from "../redux/actionAdmin";
+import "../style/App.css";
 
 function ShowProjectsAdmin() {
   const dispatch = useDispatch();
@@ -52,14 +52,12 @@ function ShowProjectsAdmin() {
     if (store.admin.nameProject === searchProject) {
       dispatch(fetchSearchProjectAdmin(store.admin.nameProject));
       setTimeout(() => {
-
         dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
       }, 1000);
     }
   }, [store.admin.nameProject]);
 
   const handleBack = () => {
-  
     setBack(false);
     dispatch({ type: SHOW_PROJECT_ADMIN, payload: [{}] });
     dispatch(fetchShowProjectAdmin());
@@ -102,7 +100,6 @@ function ShowProjectsAdmin() {
     setTimeout(() => {
       dispatch({ type: REQUESTED_SUCCEEDED_CLOSE_ADMIN });
     }, 1000);
-    
   };
 
   function DeleteProject(id) {
@@ -112,16 +109,22 @@ function ShowProjectsAdmin() {
 
   if (loading) {
     return (
-      <div className="form1111">
-        <Spinner animation="border" variant="danger" role="status"></Spinner>
+      <div className="adminform">
+        <div className="form1111admin">
+          <div className="spinner1">
+            <Spinner
+              animation="border"
+              variant="primary"
+              role="status"
+            ></Spinner>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="admin">
-      
-      {/* {store.projects.text && <Alert text={store.projects.text} />} */}
       <div className="form111admin">
         {back ? (
           <div className="button8">
@@ -156,7 +159,13 @@ function ShowProjectsAdmin() {
               Find
             </Button>{" "}
             <br></br> <br></br>
-            <Table striped bordered hover variant="dark" style={{ fontStyle: "italic" }}>
+            <Table
+              striped
+              bordered
+              hover
+              variant="dark"
+              style={{ fontStyle: "italic" }}
+            >
               <thead>
                 <tr>
                   <th>ID</th>

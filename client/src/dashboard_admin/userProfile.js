@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Spinner } from "react-bootstrap";
 import { useSelector, connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "../App.css";
-import "../admin.css";
+import "../style/App.css";
+import "../style/admin.css";
 import { fetchShowProject } from "../redux/actionProjects";
 import {
   ADMIN_COUNT_PROJECT,
@@ -36,30 +36,35 @@ function UserProfile() {
 
   if (loading) {
     return (
-      <div className="form1111">
-        <Spinner animation="border" variant="danger" role="status"></Spinner>
+      <div className="adminform">
+        <div className="form1111admin">
+          <div className="spinner1">
+            <Spinner
+              animation="border"
+              variant="primary"
+              role="status"
+            ></Spinner>
+          </div>
+        </div>
       </div>
     );
   }
 
   const handleBack = () => {
-    if(store.admin.user){
+    if (store.admin.user) {
       history.push("/admin/showUsers");
       setTimeout(() => {
         dispatch({ type: USER, payload: false });
-      }, 1000)
-    }else if(store.admin.project){
+      }, 1000);
+    } else if (store.admin.project) {
       history.push("/admin/showProjects");
       setTimeout(() => {
         dispatch({ type: PROJECT, payload: false });
-      }, 1000)
+      }, 1000);
     }
-
   };
 
-
   const handleDelete = () => {
-    
     dispatch(fetchDeleteUserAdmin(store.admin.idUserAdmin));
     setTimeout(() => {
       history.push("/admin/showUsers");
@@ -73,7 +78,6 @@ function UserProfile() {
 
   return (
     <div className="firstform9admin">
-      
       <div className="form119admin">
         <div className="button88">
           <Button variant="info" onClick={handleBack}>
@@ -110,20 +114,19 @@ function UserProfile() {
             {store.admin.adminCountProject}
           </Button>
           <span className="projects"> created projects</span>
-
         </div>
         <div className="myself">
           <p>
-            Sex:{" "}
+            Gender:{" "}
             <span className="myselfspan" style={{ fontStyle: "italic" }}>
-              {store.admin.adminSex}
+              {store.admin.adminGender ? store.admin.adminGender : " - "}
             </span>
           </p>
 
           <p>
             Age:{" "}
             <span className="myselfspan" style={{ fontStyle: "italic" }}>
-              {store.admin.adminAge} year
+              {store.admin.adminAge ? store.admin.adminAge + " year" : " - "}
             </span>
           </p>
 
@@ -137,14 +140,13 @@ function UserProfile() {
           <p>
             Phone:{" "}
             <span className="myselfspan" style={{ fontStyle: "italic" }}>
-              +380{store.admin.adminPhone}
+              {store.admin.adminPhone != null
+                ? "+380" + store.admin.adminPhone
+                : "not specified"}
             </span>
           </p>
 
-          <Button
-            variant="primary"
-            onClick={handleDelete}
-          >
+          <Button variant="primary" onClick={handleDelete}>
             Delete Account
           </Button>
         </div>

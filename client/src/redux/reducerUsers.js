@@ -1,11 +1,35 @@
-import { USER_NAME, IS_AUTH, CHANGE, ERROR, USER_SURNAME, USER_EMAIL, USER_PASSWORD, USER_ROLE, USER_ID, CLEAR_USER, REQUESTED_USER, REQUESTED_SUCCEEDED_USER, REQUESTED_SUCCEEDED_CLOSE_USER, REQUESTED_FAILED_USER, SHOW_ALERT_USER, HIDE_ALERT_USER, FLAG, SUCCESS, USER_SEX, USER_AGE, USER_COUNTRY, USER_PHONE, USER_COUNT_PROJECT } from "./types";
+import {
+  USER_NAME,
+  IS_AUTH,
+  CHANGE,
+  ERROR,
+  USER_SURNAME,
+  USER_EMAIL,
+  USER_PASSWORD,
+  USER_ROLE,
+  USER_ID,
+  CLEAR_USER,
+  REQUESTED_USER,
+  REQUESTED_SUCCEEDED_USER,
+  REQUESTED_SUCCEEDED_CLOSE_USER,
+  REQUESTED_FAILED_USER,
+  SHOW_ALERT_USER,
+  HIDE_ALERT_USER,
+  FLAG,
+  SUCCESS,
+  USER_GENDER,
+  USER_AGE,
+  USER_COUNTRY,
+  USER_PHONE,
+  USER_COUNT_PROJECT,
+} from "./types";
 
 const initialState = {
   isAuth: false,
   userCountProject: 0,
   userName: "",
   userSurname: "",
-  userSex: "",
+  userGender: "",
   userAge: 0,
   userCountry: "",
   userPhone: 0,
@@ -31,19 +55,16 @@ export const reducerUsers = (state = initialState, action) => {
       return { ...state, userName: action.payload };
     case USER_SURNAME:
       return { ...state, userSurname: action.payload };
-
-    case USER_SEX:
-      return { ...state, userSex: action.payload };
+    case USER_GENDER:
+      return { ...state, userGender: action.payload };
     case USER_AGE:
       return { ...state, userAge: action.payload };
     case USER_COUNTRY:
       return { ...state, userCountry: action.payload };
     case USER_PHONE:
       return { ...state, userPhone: action.payload };
-
     case USER_COUNT_PROJECT:
       return { ...state, userCountProject: action.payload };
-
     case USER_EMAIL:
       return { ...state, userEmail: action.payload };
     case USER_PASSWORD:
@@ -53,7 +74,7 @@ export const reducerUsers = (state = initialState, action) => {
     case USER_ID:
       return { ...state, userId: action.payload };
     case CLEAR_USER:
-      return initialState; 
+      return initialState;
     case REQUESTED_USER:
       return { ...state };
     case REQUESTED_SUCCEEDED_USER:
@@ -70,12 +91,10 @@ export const reducerUsers = (state = initialState, action) => {
       return { ...state, flagSuccess: action.payload };
     case FLAG:
       return { ...state, flag: action.payload };
-
     case CHANGE:
       return { ...state, change: action.payload };
     case ERROR:
       return { ...state, error: action.payload };
-
     default:
       return state;
   }
