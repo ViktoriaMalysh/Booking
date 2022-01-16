@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useSelector, useDispatch, connect } from "react-redux";
 import DisplayComponent from "./DisplayComponent";
 import BtnComponent from "./BtnComponent";
-import { fetchTime } from "./redux/actionProjects";
-import "./App.css";
-import "./teamgeist.css";
-import { NAME_PROJECT, REQUESTED_SUCCEEDED_CLOSE_PROJECT } from "./redux/types";
+import { fetchTime } from "../redux/actionProjects";
+import "../style/App.css";
+import "../style/tracker.css";
+import { NAME_PROJECT, REQUESTED_SUCCEEDED_CLOSE_PROJECT } from "../redux/types";
 import { useHistory } from "react-router";
 
-function App() {
+function Tracker() {
   const [time, setTime] = useState({ ms: 0, s: 0, m: 0, h: 0 });
   const [startTime1, setStartTime] = useState(new Date(2019, 0o0, 15, 18, 43, 59).toLocaleTimeString().slice(0, -3));
   const [interv, setInterv] = useState();
@@ -52,6 +52,7 @@ function App() {
     clearInterval(interv);
     setStatus(2);
     let end = new Date();
+    console.log("end", end)
     const project = {
       projectName: store.projects.nameProject,
       id: store.users.userId,
@@ -71,11 +72,10 @@ function App() {
   };
 
   const save = () => {
-    // stop();
     setTimeout(() => {
       history.push("/projects/showProjects");
       dispatch({ type: NAME_PROJECT, payload: "" });
-    }, 1000)
+    }, 600)
   };
 
   const resume = () => start();
@@ -105,6 +105,6 @@ const mapStateToProps = (state) => {
   return { store: state };
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(Tracker);
 
 

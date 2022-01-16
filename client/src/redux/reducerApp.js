@@ -10,7 +10,6 @@ export const reducerApp = (state = initialState, action) => {
       return { ...state, loading: true}
     case HIDE_LOADER:
       return { ...state, loading: false}
-
     default: return state
   }
 }

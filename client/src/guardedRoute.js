@@ -12,4 +12,3 @@ const GuardedRoute = ({ component: Component, auth, ...rest }) => {
 }
 
 export default GuardedRoute;
-

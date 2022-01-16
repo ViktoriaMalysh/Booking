@@ -1,0 +1,204 @@
+.firstform9admin {
+  background-size: 100% 1050px;
+  height: 65em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". form form form ."; 
+  padding-top: 2em;
+}
+
+.form119admin {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 10em;
+  margin: 3em;
+  grid-area: form;
+  font-family: Georgia;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "button88 nameAndSurname1 nameAndSurname1 nameAndSurname1 nameAndSurname1 nameAndSurname1 ."
+    ". myself1 myself1 myself1 myself1 . .";
+}
+
+.nameAndSurnameadmin {
+  grid-area: nameAndSurname1;
+  color: white;
+}
+
+.nameadmin{
+  font-size: 3em;
+  font-family: Georgia;
+}
+
+.myselfadmin{
+  color: white;
+  font-size: 1.5em;
+  font-family: Georgia;
+  grid-area: myself1;
+}
+
+.admin{
+  background-size: 100% 1050px;
+  height: 65em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
+  grid-template-areas: ". form form form form form ."; 
+  padding-top: 2em;
+}
+
+.form111admin {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 3em;
+  margin: 80px;
+  grid-area: form;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "button8 form77 form77 form77 .";
+}
+
+.form7admin {
+  grid-area: form77;
+  padding-top: 3em;
+  color: white;
+  font-family: Georgia;
+}
+
+.firstform9admin {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    ". form form form .";
+}
+
+.form119admin {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 8em;
+  margin: 3em;
+  grid-area: form;
+  font-family: Georgia;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "button88 image image nameAndSurname nameAndSurname nameAndSurname ."
+    ". myself myself myself myself . .";
+}
+
+.adminform{
+  background-size: 100% 1050px;
+  height: 65em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". spinner spinner spinner .";
+}
+
+.form1111admin {
+  background-color: rgba(79, 109, 145, 0.897);
+  grid-area: spinner;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    ". . . . . "
+    ". . spinner1 . .";
+}
+.spinner1{
+  grid-area: spinner1;
+}
+
+.firstform9admin1 {
+  background-size: 100% 1050px;
+  height: 65em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". form form form ."; 
+  padding-top: 2em;
+}
+
+.form119admin1 {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 10em;
+  margin: 3em;
+  grid-area: form;
+  font-family: Georgia;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "button88 nameAndSurname1 nameAndSurname1 nameAndSurname1 nameAndSurname1 nameAndSurname1 ."
+    ". myself1 myself1 myself1 myself1 . .";
+}
+
+.nameAndSurnameadmin1 {
+  grid-area: nameAndSurname1;
+  color: white;
+}
+
+.nameadmin1{
+  font-size: 3em;
+  font-family: Georgia;
+}
+
+.myselfadmin1{
+  color: white;
+  font-size: 1.5em;
+  font-family: Georgia;
+  grid-area: myself1;
+}
+
+.firstform7admin {
+  background-size: 100% 1050px;
+  height: 65em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". form form form .";
+}
+
+.form117admin {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 8em;
+  margin: 5em;
+  color: white;
+  max-height: 40em;
+  grid-area: form;
+  font-family: Georgia;
+}
+
+.firstform7admin2 {
+  background-size: 100% 1050px;
+  height: 65em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". form form form .";
+}
+
+.form117admin2 {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 8em;
+  margin: 5em;
+  color: white;
+  grid-area: form;
+  font-family: Georgia;
+}
+
+.form121admin2 {
+  background-size: 100% 1050px;
+  height: 65em;
+  padding-top: 6em;
+  background-image: url(https://oir.mobi/uploads/posts/2021-03/1616587093_36-p-programmirovanie-fon-44.jpg);
+}
+
+.form121admin {
+  background-color: rgba(79, 109, 145, 0.897);
+  padding: 15em;
+  margin-left: 20em;
+  margin-right: 20em;
+  text-align: center;
+  font-family: Georgia;
+  color: white;
+}

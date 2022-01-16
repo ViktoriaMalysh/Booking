@@ -1,10 +1,10 @@
 .stopwatch {
-  padding: 150px ;
-  text-align: center; 
+  padding: 150px;
+  text-align: center;
 }
 
-.stopwatch span{
-  background:#ec9c07ad;
+.stopwatch span {
+  background: #ec9c07ad;
   color: #fff;
   display: inline-block;
   font-family: monospace;

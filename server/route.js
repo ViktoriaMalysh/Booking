@@ -8,9 +8,6 @@ router.post('/authentication', controller.authentication)
 //localhost:8080/auth/authorization
 router.post('/authorization', controller.authorization)
 
-//localhost:8080/auth/verify
-// router.post('/verify', controller.verifyToken)
-
 //localhost:8080/auth/verify1
 router.post('/verify1', controller.verifyToken)
  
@@ -19,5 +16,11 @@ router.post('/logout', controller.logout)
 
 //localhost:8080/auth/setId
 router.post('/setId', controller.setId)
+
+//localhost:8080/auth/pass
+router.post('/pass', controller.validatePassword)
+
+//localhost:8080/auth/changeProfile
+router.post('/changeProfile', controller.changeProfile)
 
 module.exports = router 

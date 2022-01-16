@@ -1,0 +1,196 @@
+.form1 {
+  padding-top: 2em;
+  background-color: rgba(255, 230, 193, 0.877);
+  padding: 5em;
+  text-align: center;
+  margin: 7em;
+}
+
+.firstform {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". form form form .";
+}
+
+.form11 {
+  background-color: rgba(235, 183, 106, 0.877);
+  padding: 10em;
+  margin: 3em;
+  grid-area: form;
+  font-family: Georgia;
+}
+
+.firstform7 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "button7 . . . ."
+    ". form form form .";
+}
+
+.form117 {
+  background-color: rgba(235, 183, 106, 0.877);
+  padding: 8em;
+  margin: 3em;
+  grid-area: form;
+  font-family: Georgia;
+}
+.button1 {
+  grid-area: button7;
+}
+
+.ppp {
+  text-align: center;
+}
+
+.firstform9 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "image name surname . ."
+    ". form form form .";
+}
+
+.form119 {
+  background-color: rgba(235, 183, 106, 0.877);
+  padding: 8em;
+  margin: 3em;
+  grid-area: form;
+  font-family: Georgia;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "button88 image image nameAndSurname nameAndSurname nameAndSurname ."
+    ". myself myself myself myself . .";
+}
+
+.button88 {
+  grid-area: button88;
+}
+
+.image9 {
+  grid-area: image;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.alertGrid {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: ". alert alert alert .";
+}
+.alertMessage {
+  text-align: center;
+  grid-area: alert;
+}
+
+.myself {
+  font-size: 1.5em;
+  font-family: Georgia;
+  grid-area: myself;
+}
+
+.myselfspan {
+  font-family: Calibri;
+}
+
+.nameAndSurname {
+  grid-area: nameAndSurname;
+  padding-top: 1em;
+}
+
+.name {
+  font-size: 3em;
+  font-family: Georgia;
+}
+
+.country,
+.projects {
+  font-size: 1.5em;
+  font-family: Georgia;
+  font-style: italic;
+}
+
+.form121 {
+  background-color: rgba(235, 183, 106, 0.877);
+  padding: 15em;
+  margin: 8em;
+  margin-left: 20em;
+  margin-right: 20em;
+  text-align: center;
+  font-family: Georgia;
+}
+
+.form111 {
+  background-color: rgba(235, 183, 106, 0.945);
+  padding: 3em;
+  margin: 80px;
+  margin-left: 10em;
+  margin-right: 10em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "button8 form77 form77 form77 .";
+}
+
+.pMessage {
+  text-align: center;
+  font-family: Georgia;
+  font-size: 2em;
+}
+
+.pMessage2 {
+  text-align: center;
+  font-family: Georgia;
+  padding-top: 2em;
+  font-size: 1.5em;
+}
+
+.button8 {
+  grid-area: button8;
+}
+
+.form7 {
+  grid-area: form77;
+  font-family: Georgia;
+}
+
+.form71 {
+  grid-area: form77;
+  padding: 5em;
+  text-align: center;
+}
+
+.form1111 {
+  background-color: rgba(235, 183, 106, 0.945);
+  padding: 150px;
+  margin: 80px;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .form1 {
+    padding-top: 2em;
+    background-color: rgba(255, 230, 193, 0.877);
+    padding: 0.5em;
+    text-align: center;
+    margin: 1em;
+  }
+
+  .form11 {
+    background-color: rgba(235, 183, 106, 0.877);
+    padding: 3em;
+  }
+
+  .form111 {
+    background-color: rgba(235, 183, 106, 0.945);
+    padding: 1em;
+    margin: 1em;
+    font-size: 0.6em;
+  }
+}

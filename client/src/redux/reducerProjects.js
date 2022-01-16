@@ -1,4 +1,16 @@
-import { NAME_PROJECT, SHOW_PROJECT, SHOW_ALERT, HIDE_ALERT, SHOW_LOADER, HIDE_LOADER, REQUESTED_SUCCEEDED_PROJECT, REQUESTED_SUCCEEDED_CLOSE_PROJECT, REQUESTED_FAILED_PROJECT, REQUESTED_PROJECT, FLAG_DELETE } from "./types";
+import {
+  NAME_PROJECT,
+  SHOW_PROJECT,
+  SHOW_ALERT,
+  HIDE_ALERT,
+  SHOW_LOADER,
+  HIDE_LOADER,
+  REQUESTED_SUCCEEDED_PROJECT,
+  REQUESTED_SUCCEEDED_CLOSE_PROJECT,
+  REQUESTED_FAILED_PROJECT,
+  REQUESTED_PROJECT,
+  FLAG_DELETE,
+} from "./types";
 
 const initialState = {
   nameProject: "",
@@ -30,12 +42,11 @@ export const reducerProjects = (state = initialState, action) => {
     case HIDE_ALERT:
       return { ...state, text: false };
     case SHOW_LOADER:
-        return { ...state, loading: true };
+      return { ...state, loading: true };
     case HIDE_LOADER:
-        return { ...state, loading: false };
+      return { ...state, loading: false };
     case FLAG_DELETE:
-      return { ...state, delete: true };
-
+      return { ...state, delete: action.payload };
     default:
       return state;
   }
